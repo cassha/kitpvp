@@ -1,0 +1,108 @@
+no-permissions: "&cYou no have permissions from execute this command."
+join:
+  player:
+    - "&eWelcome to the &9Test Server."
+  online-players: "&9%player_name% &ehas join from server."
+quit: "&9%player_name% &ehas been quit from server."
+death-message: "&9%player_name% &chas been killed by &9%killer_name%"
+spawn:
+  success: "&aThe spawn has been set."
+  not-exists: "&cThe spawn is not exists."
+  teleport: "&eYou have teleport to &9Spawn"
+  options:
+    title: "&7Spawn Options"
+    items:
+      enabled:
+        name: "&aEnable"
+        lore:
+          - "&6"
+          - "&7Enable the default teleport on player join."
+          - "&a"
+        is-enabled: "&aThe default teleport is already enabled."
+        enabled: "&aThe default teleport enabled."
+      disabled:
+        name: "&cDisable"
+        lore:
+          - "&6"
+          - "&7Disable the default teleport on player join."
+          - "&a"
+        is-disabled: "&cThe default teleport is already disabled."
+        disabled: "&cThe default teleport disabled."
+kit:
+  usage:
+    - "&eThe correct usage is &c/kit <kitname/create/delete/edit>"
+  exists: "&eThe kit &9%kit_name% &ealready exists."
+  not-exists: "&eThe kit &9%kit_name% &enot exists."
+  create:
+    success: "&eThe kit &9%kit_name% &ehas been create."
+    usage: "&eThe correct usage is &c/kit create <kitname>"
+  delete:
+    success: "&eThe kit &9%kit_name% &ehas been delete."
+    usage: "&eThe correct usage is &c/kit delete <kitname>"
+  editor:
+    messages:
+      usage: "&cCorrect usage is /kit edit <tag_id>"
+      error: "&cThe kit %tag_id% not exists."
+    title: "&7Kit editor."
+    items:
+      decoration:
+        name: "&9Edit the decoration."
+        lore:
+          - "&4"
+          - "&7Edit the display name and lore of kit."
+          - "&4"
+          - "&eClick me"
+          - "&5"
+      contents:
+        messages:
+          success: "&aThe contents has been changed from kit."
+        name: "&9Edit the contents."
+        lore:
+          - "&4"
+          - "&7Edit the inventory and armor contents of kit."
+          - "&7Your items and armor has been set to kit."
+          - "&eClick me"
+          - "&5"
+tag:
+  create:
+    usage: "&cCorrect usage is &7/tag create <tag_id>"
+    success: "&cThe &7%tag_id%&c tag has been created."
+    error: "&cThe &7%tag_id%&c tag is already exists."
+  delete:
+    usage: "&cCorrect usage is &7/tag delete <tag_id>"
+    success: "&cThe &7%tag_id%&c tag has been deleted."
+    error: "&cThe &7%tag_id%&c if not exists."
+  apply:
+    success: "&eYou tag &7%tag_id% &ehas been apply."
+    error: "&cYou no have permissions to use tag &7%tag_id%&c."
+  edit:
+    error: "&cThe &7%tag_id%&c if not exists."
+    success: "&9The &e%type% &9has been changed."
+    usage: "&cCorrect usage is &7/tag edit <tag_id>"
+    title: "&7Edit the &a%tag_id% &7tag!"
+    items:
+      prefix:
+        name: "&7Change Prefix"
+        lore:
+          - "&1"
+          - "&7Change the prefix for this tag."
+          - "&2"
+      suffix:
+        name: "&7Change Suffix"
+        lore:
+          - "&1"
+          - "&7Change the suffix for this tag."
+          - "&2"
+      list_name:
+        name: "&7Change List Name"
+        lore:
+          - "&1"
+          - "&7Change the list name for this tag."
+          - "&2"
+  gui:
+    title: "&7Tags List"
+    descrption:
+      - "&1"
+      - "&7Prefix: %prefix%"
+      - "&7Suffix: %suffix%"
+      - "&2"
