@@ -1,11 +1,11 @@
-package dev.notcacha.kitpvp.core.tag;
+package dev.notcacha.kitpvp.api.tag;
 
-import dev.notcacha.kitpvp.api.tag.Tag;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.beans.ConstructorProperties;
 
+@JsonSerialize(as = Tag.class)
 public class DefaultTag implements Tag {
 
     private final String id;
@@ -13,20 +13,14 @@ public class DefaultTag implements Tag {
     private String suffix;
     private String listName;
 
+    @ConstructorProperties({
+            "_id", "prefix", "suffix", "list_name"
+    })
     public DefaultTag(String id, String prefix, String suffix, String listName) {
         this.id = id;
         this.prefix = prefix;
         this.suffix = suffix;
         this.listName = listName;
-    }
-
-    public DefaultTag(Map<String, Object> map) {
-        this(
-                (String) map.get("_id"),
-                (String) map.get("prefix"),
-                (String) map.get("suffix"),
-                (String) map.get("list_name")
-        );
     }
 
     @Override
@@ -66,15 +60,4 @@ public class DefaultTag implements Tag {
     }
 
 
-    @Override
-    public Map<String, Object> serialize() {
-        Map<String, Object> map = new HashMap<>();
-
-        map.put("_id", id);
-        map.put("prefix", prefix);
-        map.put("suffix", suffix);
-        map.put("list_name", listName);
-
-        return map;
-    }
 }

@@ -1,4 +1,4 @@
-package dev.notcacha.kitpvp.api.tag;
+package dev.notcacha.kitpvp.api.tag.create;
 
 public interface TagCreate {
 

@@ -3,7 +3,7 @@ package dev.notcacha.kitpvp.core.command;
 import dev.notcacha.kitpvp.api.message.MessageHandler;
 import dev.notcacha.kitpvp.api.repository.ModelRepository;
 import dev.notcacha.kitpvp.api.tag.Tag;
-import dev.notcacha.kitpvp.api.tag.TagApplier;
+import dev.notcacha.kitpvp.api.tag.applier.TagApplier;
 import dev.notcacha.kitpvp.core.command.tag.TagCreateCommand;
 import dev.notcacha.kitpvp.core.command.tag.TagDeleteCommand;
 import dev.notcacha.kitpvp.core.command.tag.TagEditCommand;

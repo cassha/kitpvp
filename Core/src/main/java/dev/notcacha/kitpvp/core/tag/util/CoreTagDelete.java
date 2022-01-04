@@ -3,8 +3,8 @@ package dev.notcacha.kitpvp.core.tag.util;
 import dev.notcacha.kitpvp.api.cache.ObjectCache;
 import dev.notcacha.kitpvp.api.model.processor.ModelDeleteProcessor;
 import dev.notcacha.kitpvp.api.tag.Tag;
-import dev.notcacha.kitpvp.api.tag.TagDelete;
-import dev.notcacha.kitpvp.core.tag.DefaultTag;
+import dev.notcacha.kitpvp.api.tag.delete.TagDelete;
+import dev.notcacha.kitpvp.api.tag.DefaultTag;
 
 import javax.inject.Inject;
 

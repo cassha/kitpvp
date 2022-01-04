@@ -1,7 +1,7 @@
 package dev.notcacha.kitpvp.core.tag.util;
 
 import dev.notcacha.kitpvp.api.tag.Tag;
-import dev.notcacha.kitpvp.api.tag.TagApplier;
+import dev.notcacha.kitpvp.api.tag.applier.TagApplier;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;

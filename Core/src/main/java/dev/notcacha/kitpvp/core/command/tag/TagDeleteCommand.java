@@ -1,7 +1,7 @@
 package dev.notcacha.kitpvp.core.command.tag;
 
 import dev.notcacha.kitpvp.api.message.MessageHandler;
-import dev.notcacha.kitpvp.api.tag.TagDelete;
+import dev.notcacha.kitpvp.api.tag.delete.TagDelete;
 import me.fixeddev.commandflow.annotated.CommandClass;
 import me.fixeddev.commandflow.annotated.annotation.Command;
 import me.fixeddev.commandflow.annotated.annotation.OptArg;

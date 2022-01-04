@@ -4,7 +4,6 @@ import javax.inject.Inject;
 import dev.notcacha.kitpvp.api.kit.Kit;
 import dev.notcacha.kitpvp.api.message.MessageHandler;
 import dev.notcacha.kitpvp.api.repository.ModelRepository;
-import dev.notcacha.kitpvp.core.gui.kit.KitEditorGUI;
 import me.fixeddev.commandflow.annotated.CommandClass;
 import me.fixeddev.commandflow.annotated.annotation.Command;
 import me.fixeddev.commandflow.annotated.annotation.OptArg;
@@ -37,7 +36,6 @@ public class KitEditCommand implements CommandClass {
                 return;
             }
 
-            new KitEditorGUI(plugin, player, messageHandler.getMessage("kit.editor.title"), messageHandler, callbackResponse.get());
         });
 
         return true;

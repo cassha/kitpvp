@@ -1,5 +1,6 @@
 package dev.notcacha.kitpvp.core.item;
 
+import dev.notcacha.kitpvp.api.item.DefaultSerializableItem;
 import dev.notcacha.kitpvp.api.item.SerializableItem;
 
 import java.util.ArrayList;
@@ -10,7 +11,6 @@ import java.util.Set;
 public class SerializableItemBuilder {
 
     protected String material = null;
-    protected int materialCode = 0;
     protected Short code = 0;
     protected Integer amount = 1;
     protected String displayName = null;
@@ -19,12 +19,6 @@ public class SerializableItemBuilder {
 
     public SerializableItemBuilder setMaterial(String material) {
         this.material = material;
-
-        return this;
-    }
-
-    public SerializableItemBuilder setMaterialCode(int code) {
-        this.materialCode = code;
 
         return this;
     }
@@ -60,9 +54,8 @@ public class SerializableItemBuilder {
     }
 
     public SerializableItem build() {
-        return new CoreSerializableItem(
+        return new DefaultSerializableItem(
                 material,
-                materialCode,
                 code,
                 amount,
                 new SerializableItem.DecorationCompound() {

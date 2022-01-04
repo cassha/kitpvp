@@ -3,7 +3,7 @@ package dev.notcacha.kitpvp.core.gui.tag;
 import dev.notcacha.kitpvp.api.message.MessageHandler;
 import dev.notcacha.kitpvp.api.repository.ModelRepository;
 import dev.notcacha.kitpvp.api.tag.Tag;
-import dev.notcacha.kitpvp.api.tag.TagApplier;
+import dev.notcacha.kitpvp.api.tag.applier.TagApplier;
 import me.patothebest.guiframework.gui.inventory.GUIPage;
 import me.patothebest.guiframework.gui.inventory.button.SimpleButton;
 import me.patothebest.guiframework.itemstack.ItemStackBuilder;

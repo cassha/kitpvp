@@ -1,9 +1,9 @@
 package dev.notcacha.kitpvp.core.cache;
 
-import com.google.inject.Singleton;
 import dev.notcacha.kitpvp.api.cache.ObjectCache;
 import dev.notcacha.kitpvp.api.model.Model;
 
+import javax.inject.Singleton;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;

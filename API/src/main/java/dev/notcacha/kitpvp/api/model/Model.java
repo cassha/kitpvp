@@ -1,13 +1,14 @@
 package dev.notcacha.kitpvp.api.model;
 
-import org.bukkit.configuration.serialization.ConfigurationSerializable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-public interface Model extends ConfigurationSerializable {
+public interface Model {
 
     /**
      * @return The id from this model.
      */
 
+    @JsonProperty("_id")
     String getId();
 
 }

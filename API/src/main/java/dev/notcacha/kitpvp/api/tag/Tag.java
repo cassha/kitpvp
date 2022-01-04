@@ -1,14 +1,18 @@
 package dev.notcacha.kitpvp.api.tag;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import dev.notcacha.kitpvp.api.model.Model;
 import org.jetbrains.annotations.Nullable;
 
+@JsonDeserialize(as = DefaultTag.class)
 public interface Tag extends Model {
 
     /**
      * @return The prefix of this {@link Tag}
      */
 
+    @JsonProperty("prefix")
     String getPrefix();
 
     /**
@@ -22,6 +26,7 @@ public interface Tag extends Model {
      * @return The suffix of this {@link Tag}
      */
 
+    @JsonProperty("suffix")
     String getSuffix();
 
     /**
@@ -36,6 +41,7 @@ public interface Tag extends Model {
      * @return The list name of this {@link Tag}
      */
 
+    @JsonProperty("list_name")
     @Nullable String getListName();
 
     /**

@@ -1,11 +1,16 @@
 package dev.notcacha.kitpvp.api.statistic;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
+@JsonDeserialize(as = DefaultStatistic.class)
 public interface Statistic {
 
     /**
      * @return The total amount of statistic.
      */
 
+    @JsonProperty("amount")
     int getAmount();
 
     /**

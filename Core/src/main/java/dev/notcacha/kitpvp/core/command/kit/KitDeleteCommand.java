@@ -5,7 +5,7 @@ import dev.notcacha.kitpvp.api.cache.ObjectCache;
 import dev.notcacha.kitpvp.api.kit.Kit;
 import dev.notcacha.kitpvp.api.message.MessageHandler;
 import dev.notcacha.kitpvp.api.model.processor.ModelDeleteProcessor;
-import dev.notcacha.kitpvp.core.kit.DefaultKit;
+import dev.notcacha.kitpvp.api.kit.DefaultKit;
 import me.fixeddev.commandflow.annotated.CommandClass;
 import me.fixeddev.commandflow.annotated.annotation.Command;
 import me.fixeddev.commandflow.annotated.annotation.OptArg;

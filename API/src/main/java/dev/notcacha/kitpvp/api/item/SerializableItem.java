@@ -1,5 +1,10 @@
 package dev.notcacha.kitpvp.api.item;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import dev.notcacha.kitpvp.api.item.addons.DefaultDecorationCompound;
+import dev.notcacha.kitpvp.api.item.addons.DefaultEnchantmentCompound;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -14,46 +19,52 @@ import java.util.Set;
  * Item that can be built to an {@link org.bukkit.inventory.ItemStack}
  */
 
+@JsonDeserialize(as = DefaultSerializableItem.class)
 public interface SerializableItem {
 
     /**
      * @return material of the item.
      */
 
+    @JsonProperty("material_name")
     String getMaterialName();
-
-    int getMaterialCode();
 
     /**
      * @return material code
      */
 
+    @JsonProperty("code")
     Short getCode();
 
     /**
      * @return item quantity
      */
 
+    @JsonProperty("amount")
     Integer getNumber();
 
     /**
      * @return The item decoration.
      */
 
+    @JsonProperty("decoration")
     DecorationCompound getDecoration();
 
+    @JsonDeserialize(as = DefaultDecorationCompound.class)
     interface DecorationCompound {
 
         /**
          * @return The display name from item.
          */
 
+        @JsonProperty("display_name")
         String getDisplayName();
 
         /**
          * @return The description from item.
          */
 
+        @JsonProperty("description")
         List<String> getDescription();
 
     }
@@ -62,24 +73,29 @@ public interface SerializableItem {
      * @return enchantments of the item
      */
 
+    @JsonProperty("enchantments")
     Set<EnchantmentCompound> getEnchantments();
 
+    @JsonDeserialize(as = DefaultEnchantmentCompound.class)
     interface EnchantmentCompound {
 
         /**
          * @return enchantment to be applied
          */
 
+        @JsonProperty("type")
         String getType();
 
         /**
          * @return level of the enchantment
          */
 
+        @JsonProperty("level")
         int getLevel();
 
     }
 
+    @JsonIgnore
     default ItemStack toItemStack() {
         ItemStack itemStack = new ItemStack(Material.matchMaterial(getMaterialName()), getNumber());
         ItemMeta itemMeta = itemStack.getItemMeta();
@@ -115,11 +131,6 @@ public interface SerializableItem {
             @Override
             public String getMaterialName() {
                 return itemStack.getType().name();
-            }
-
-            @Override
-            public int getMaterialCode() {
-                return 0;
             }
 
             @Override

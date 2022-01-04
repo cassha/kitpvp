@@ -20,13 +20,15 @@ import java.util.Set;
 
 public class MongoModelFindProcessor<T extends Model> implements ModelFindProcessor<T> {
 
-    @Inject private ListeningExecutorService executorService;
-    @Inject private ObjectCache<T> objectCache;
+    private final ListeningExecutorService executorService;
+    private final ObjectCache<T> objectCache;
 
     private final MongoCollection<T> mongoCollection;
 
     @Inject
-    public MongoModelFindProcessor(ModelBinderData<T> modelBinderData, MongoConnection mongoConnection) {
+    public MongoModelFindProcessor(ListeningExecutorService executorService, ObjectCache<T> objectCache, ModelBinderData<T> modelBinderData, MongoConnection mongoConnection) {
+        this.executorService = executorService;
+        this.objectCache = objectCache;
         this.mongoCollection = mongoConnection.getClient()
                 .getDatabase("kitpvp")
                 .getCollection(modelBinderData.getType().getRawType().getSimpleName().toLowerCase(), modelBinderData.getType().getRawType());
@@ -48,13 +50,17 @@ public class MongoModelFindProcessor<T extends Model> implements ModelFindProces
         return new SimpleAsyncResponse<>(executorService.submit(() -> {
             Optional<T> response = findOneSync(id);
 
-            return response.map(object -> new WrappedResponse(Response.Status.SUCCESS, object))
-                    .orElseGet(() -> new WrappedResponse(Response.Status.ERROR, null));
+            return response.<Response<T>>map(t -> new WrappedResponse<>(Response.Status.SUCCESS, t)).orElseGet(() -> new WrappedResponse<>(Response.Status.ERROR, null));
+
         }));
     }
 
     @Override
     public AsyncResponse<Set<T>> findAllAsync() {
-        return new SimpleAsyncResponse<>(executorService.submit(() -> new WrappedResponse<>(Response.Status.SUCCESS, mongoCollection.find().into(new HashSet<>()))));
+        Set<T> set = mongoCollection.find().into(new HashSet<>());
+
+        set.addAll(objectCache.getAllPresent());
+
+        return new SimpleAsyncResponse<>(executorService.submit(() -> new WrappedResponse<>(Response.Status.SUCCESS, set)));
     }
 }

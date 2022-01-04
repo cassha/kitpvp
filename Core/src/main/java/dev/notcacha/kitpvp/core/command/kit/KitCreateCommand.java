@@ -6,7 +6,7 @@ import dev.notcacha.kitpvp.api.kit.Kit;
 import dev.notcacha.kitpvp.api.message.MessageHandler;
 import dev.notcacha.kitpvp.api.repository.ModelRepository;
 import dev.notcacha.kitpvp.core.item.SerializableItemBuilder;
-import dev.notcacha.kitpvp.core.kit.DefaultKit;
+import dev.notcacha.kitpvp.api.kit.DefaultKit;
 import me.fixeddev.commandflow.annotated.CommandClass;
 import me.fixeddev.commandflow.annotated.annotation.Command;
 import me.fixeddev.commandflow.annotated.annotation.OptArg;

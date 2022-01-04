@@ -1,25 +1,28 @@
-package dev.notcacha.kitpvp.core.item;
+package dev.notcacha.kitpvp.api.item;
 
-import dev.notcacha.kitpvp.api.item.SerializableItem;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.beans.ConstructorProperties;
 import java.util.Set;
 
-public class CoreSerializableItem implements SerializableItem {
+@JsonSerialize(as = SerializableItem.class)
+public class DefaultSerializableItem implements SerializableItem {
 
     private final String materialName;
-    private final int materialCode;
     private final Short code;
     private final Integer amount;
     private final DecorationCompound decorationCompound;
     private final Set<EnchantmentCompound> enchantmentCompoundSet;
 
-    public CoreSerializableItem(String materialName, int materialCode, Short code, Integer amount, DecorationCompound decorationCompound, Set<EnchantmentCompound> enchantmentCompoundSet) {
+    @ConstructorProperties({
+            "material_name", "code", "amount", "decoration", "enchantments"
+    })
+    public DefaultSerializableItem(String materialName, Short code, Integer amount, DecorationCompound decorationCompound, Set<EnchantmentCompound> enchantmentCompoundSet) {
         this.materialName = materialName;
-        this.materialCode = materialCode;
         this.code = code;
         this.amount = amount;
         this.decorationCompound = decorationCompound;
@@ -28,10 +31,6 @@ public class CoreSerializableItem implements SerializableItem {
 
     public String getMaterialName() {
         return materialName;
-    }
-
-    public int getMaterialCode() {
-        return materialCode;
     }
 
     public Short getCode() {
@@ -51,13 +50,7 @@ public class CoreSerializableItem implements SerializableItem {
     }
 
     public ItemStack toItemStack() {
-        ItemStack item = null;
-
-        if (materialName == null) {
-            item = new ItemStack(materialCode, amount, code);
-        } else {
-            item = new ItemStack(Material.matchMaterial(materialName), amount, code);
-        }
+        ItemStack item = new ItemStack(Material.matchMaterial(materialName), amount, code);
 
         ItemMeta itemMeta = item.getItemMeta();
         itemMeta.setDisplayName(getDecoration().getDisplayName());

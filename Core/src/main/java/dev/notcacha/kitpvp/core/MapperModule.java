@@ -2,21 +2,21 @@ package dev.notcacha.kitpvp.core;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.module.mrbean.MrBeanModule;
+import fr.javatic.mongo.jacksonCodec.ObjectMapperFactory;
 import me.yushust.inject.AbstractModule;
+import me.yushust.inject.Provides;
+
+import javax.inject.Singleton;
 
 public class MapperModule extends AbstractModule {
 
     @Override
-    protected void configure() {
-        bind(ObjectMapper.class).toProvider(
-                () -> {
-                    ObjectMapper mapper = new ObjectMapper();
-                    mapper.registerModule(new MrBeanModule());
-                    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+    protected void configure() {}
 
-                    return mapper;
-                }
-        ).singleton();
+    @Singleton
+    @Provides
+    public ObjectMapper provideObjectMapper() {
+        return ObjectMapperFactory.createObjectMapper()
+                .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
 }

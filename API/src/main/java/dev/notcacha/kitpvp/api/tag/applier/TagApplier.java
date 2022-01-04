@@ -1,5 +1,6 @@
-package dev.notcacha.kitpvp.api.tag;
+package dev.notcacha.kitpvp.api.tag.applier;
 
+import dev.notcacha.kitpvp.api.tag.Tag;
 import org.bukkit.entity.Player;
 
 public interface TagApplier {
