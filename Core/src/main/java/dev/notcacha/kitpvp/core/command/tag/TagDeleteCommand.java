@@ -1,7 +1,8 @@
 package dev.notcacha.kitpvp.core.command.tag;
 
 import dev.notcacha.kitpvp.api.message.MessageHandler;
-import dev.notcacha.kitpvp.api.tag.delete.TagDelete;
+import dev.notcacha.kitpvp.api.repository.ModelRepository;
+import dev.notcacha.kitpvp.api.tag.Tag;
 import me.fixeddev.commandflow.annotated.CommandClass;
 import me.fixeddev.commandflow.annotated.annotation.Command;
 import me.fixeddev.commandflow.annotated.annotation.OptArg;
@@ -13,7 +14,7 @@ import javax.inject.Inject;
 @Command(names = "delete", permission = "kitpvp.tag.delete")
 public class TagDeleteCommand implements CommandClass {
 
-    @Inject private TagDelete tagDelete;
+    @Inject private ModelRepository<Tag> tagModelRepository;
     @Inject private MessageHandler messageHandler;
 
     @Command(names = "")
@@ -23,12 +24,16 @@ public class TagDeleteCommand implements CommandClass {
             return true;
         }
 
-        if (tagDelete.delete(tagId)) {
-            player.sendMessage(messageHandler.getMessage("tag.delete.success").replace("%tag_id%", tagId));
-            return true;
-        }
+        tagModelRepository.delete(tagId).callback(callback -> {
+            if (callback.getResponse().get()) {
+                player.sendMessage(messageHandler.getMessage("tag.delete.success").replace("%tag_id%", tagId));
 
-        player.sendMessage(messageHandler.getMessage("tag.delete.error").replace("%tag_id%", tagId));
+                return;
+            }
+
+            player.sendMessage(messageHandler.getMessage("tag.delete.error").replace("%tag_id%", tagId));
+        });
+
         return true;
     }
 }

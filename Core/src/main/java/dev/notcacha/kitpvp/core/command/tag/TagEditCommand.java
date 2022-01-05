@@ -1,7 +1,7 @@
 package dev.notcacha.kitpvp.core.command.tag;
 
 import dev.notcacha.kitpvp.api.message.MessageHandler;
-import dev.notcacha.kitpvp.api.model.processor.ModelFindProcessor;
+import dev.notcacha.kitpvp.api.repository.ModelRepository;
 import dev.notcacha.kitpvp.api.tag.Tag;
 import dev.notcacha.kitpvp.core.gui.tag.TagEditorGUI;
 import me.fixeddev.commandflow.annotated.CommandClass;
@@ -18,7 +18,7 @@ import java.util.Optional;
 public class TagEditCommand implements CommandClass {
 
     @Inject private MessageHandler messageHandler;
-    @Inject private ModelFindProcessor<Tag> tagModelFindProcessor;
+    @Inject private ModelRepository<Tag> tagModelRepository;
     @Inject private Plugin plugin;
 
     @Command(names = "")
@@ -28,7 +28,7 @@ public class TagEditCommand implements CommandClass {
             return true;
         }
 
-        tagModelFindProcessor.findOneAsync(tagId).callback(callback -> {
+        tagModelRepository.findOne(tagId).callback(callback -> {
             Optional<Tag> callbackResponse = callback.getResponse();
 
             if (!callbackResponse.isPresent()) {

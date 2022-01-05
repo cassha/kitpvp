@@ -1,6 +1,7 @@
+# The database name is kitpvp
+
 mongo:
   username: username
   password: password
   host: localhost
   port: 27017
-  database: admin

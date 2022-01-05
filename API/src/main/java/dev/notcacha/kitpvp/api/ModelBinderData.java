@@ -3,8 +3,6 @@ package dev.notcacha.kitpvp.api;
 import dev.notcacha.kitpvp.api.util.Validate;
 import me.yushust.inject.key.TypeReference;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public interface ModelBinderData<T> {
 
@@ -15,12 +13,6 @@ public interface ModelBinderData<T> {
     TypeReference<T> getType();
 
     /**
-     * @return Alternative data in any case that is necessary
-     */
-
-    Map<String, Object> getAlternativeData();
-
-    /**
      * @return New instance class of {@link ModelBinderData}.
      */
 
@@ -29,16 +21,9 @@ public interface ModelBinderData<T> {
 
         return new ModelBinderData<T>() {
 
-            private final Map<String, Object> dataMap = new HashMap<>();
-
             @Override
             public TypeReference<T> getType() {
                 return reference;
-            }
-
-            @Override
-            public Map<String, Object> getAlternativeData() {
-                return dataMap;
             }
         };
     }
@@ -47,13 +32,7 @@ public interface ModelBinderData<T> {
      * @return New {@link ModelBinderData} from storage's.
      */
 
-    static <T> ModelBinderData<T> forStorage(TypeReference<T> reference, String storageFolder) {
-        ModelBinderData<T> modelDataBinder = create(reference);
-
-        Validate.nonNull(storageFolder, "The storage folder from ModelBinderData is null");
-
-        modelDataBinder.getAlternativeData().put("folder", storageFolder);
-
-        return modelDataBinder;
+    static <T> ModelBinderData<T> forStorage(TypeReference<T> reference) {
+        return create(reference);
     }
 }

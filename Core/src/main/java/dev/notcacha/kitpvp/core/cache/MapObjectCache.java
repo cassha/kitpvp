@@ -2,18 +2,21 @@ package dev.notcacha.kitpvp.core.cache;
 
 import dev.notcacha.kitpvp.api.cache.ObjectCache;
 import dev.notcacha.kitpvp.api.model.Model;
+import org.bukkit.plugin.Plugin;
 
-import javax.inject.Singleton;
+import javax.inject.Inject;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Level;
 
-@Singleton
 public class MapObjectCache<T extends Model> implements ObjectCache<T> {
 
     private final Map<String, T> map = new HashMap<>();
+
+    @Inject private Plugin plugin;
 
     @Override
     public Optional<T> findIfPresent(String objectId) {
@@ -22,6 +25,11 @@ public class MapObjectCache<T extends Model> implements ObjectCache<T> {
 
     @Override
     public void addObject(T object) {
+        if (ifPresent(object.getId())) {
+            plugin.getLogger().log(Level.WARNING, "The model with the id " + object.getId() + " that is wanting to be added to the cache is already stored, otherwise update the cache");
+            return;
+        }
+
         map.put(object.getId(), object);
     }
 
@@ -36,7 +44,12 @@ public class MapObjectCache<T extends Model> implements ObjectCache<T> {
 
     @Override
     public void removeObject(String objectId) {
-        if (ifPresent(objectId)) removeObject(objectId);
+        if (!ifPresent(objectId)) {
+            plugin.getLogger().log(Level.WARNING, "The model of id " + objectId + " not saved in cached.");
+            return;
+        }
+
+        removeObject(objectId);
     }
 
     @Override

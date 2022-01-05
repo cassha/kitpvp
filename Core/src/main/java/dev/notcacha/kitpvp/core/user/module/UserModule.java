@@ -18,13 +18,11 @@ public class UserModule extends AbstractModule {
                 binder(),
                 User.class,
                 ModelBinderData.forStorage(
-                        TypeReferenceUtil.getTypeOf(User.class),
-                        "/users/"
+                        TypeReferenceUtil.getTypeOf(User.class)
                 )
         );
 
         userModelBinder.bindCache().bindDefault();
-        userModelBinder.bindRepository();
         userModelBinder.bindProcessors()
                 .bindCustom(
                         ModelFindProcessor.class,
@@ -32,5 +30,7 @@ public class UserModule extends AbstractModule {
                 )
                 .bindDelete()
                 .bindSave();
+
+        userModelBinder.bindRepository();
     }
 }

@@ -51,7 +51,7 @@ public class PlayerListener implements Listener {
 
         plugin.getServer().getPluginManager().callEvent(new UserLeaveEvent(user, event.getPlayer()));
 
-        userModelSaveProcessor.saveAsync(user);
+        userModelSaveProcessor.saveAsync(user, false);
     }
 
 }

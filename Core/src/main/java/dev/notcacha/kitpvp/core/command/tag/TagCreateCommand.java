@@ -1,7 +1,9 @@
 package dev.notcacha.kitpvp.core.command.tag;
 
 import dev.notcacha.kitpvp.api.message.MessageHandler;
-import dev.notcacha.kitpvp.api.tag.create.TagCreate;
+import dev.notcacha.kitpvp.api.repository.ModelRepository;
+import dev.notcacha.kitpvp.api.tag.DefaultTag;
+import dev.notcacha.kitpvp.api.tag.Tag;
 import me.fixeddev.commandflow.annotated.CommandClass;
 import me.fixeddev.commandflow.annotated.annotation.Command;
 import me.fixeddev.commandflow.annotated.annotation.OptArg;
@@ -13,7 +15,7 @@ import javax.inject.Inject;
 @Command(names = "create", permission = "kitpvp.tag.create")
 public class TagCreateCommand implements CommandClass {
 
-    @Inject private TagCreate tagCreate;
+    @Inject private ModelRepository<Tag> tagModelRepository;
     @Inject private MessageHandler messageHandler;
 
     @Command(names = "")
@@ -23,13 +25,24 @@ public class TagCreateCommand implements CommandClass {
             return true;
         }
 
-        if (tagCreate.createTag(tagId)) {
-            player.sendMessage(messageHandler.getMessage("tag.create.success").replace("%tag_id%", tagId));
+        tagModelRepository.findOne(tagId).callback(callback -> {
+            if (!callback.isSuccessful()) {
+                tagModelRepository.save(new DefaultTag(
+                        tagId,
+                        "",
+                        "",
+                        tagId
+                ), true);
 
-            return true;
-        }
+                player.sendMessage(messageHandler.getMessage("tag.create.success").replace("%tag_id%", tagId));
 
-        player.sendMessage(messageHandler.getMessage("tag.create.error").replace("%tag_id%", tagId));
+                return;
+            }
+
+
+            player.sendMessage(messageHandler.getMessage("tag.create.error").replace("%tag_id%", tagId));
+        });
+
         return true;
     }
 }

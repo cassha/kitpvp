@@ -38,10 +38,11 @@ public interface ModelRepository<T extends Model> {
      * Save an object with the same type of the generic type and save in the database
      *
      * @param object The object to save
+     * @param saveInCached determines in object as been saved in cached.
      * @return An async void response indicating that was saved
      */
 
-    AsyncResponse<Void> save(T object);
+    AsyncResponse<Void> save(T object, boolean saveInCached);
 
     /**
      * Delete an object of the database
@@ -50,5 +51,5 @@ public interface ModelRepository<T extends Model> {
      * @return An async void response indicating that was deleted
      */
 
-    AsyncResponse<Void> delete(String id);
+    AsyncResponse<Boolean> delete(String id);
 }

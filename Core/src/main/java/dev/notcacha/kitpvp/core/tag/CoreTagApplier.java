@@ -1,4 +1,4 @@
-package dev.notcacha.kitpvp.core.tag.util;
+package dev.notcacha.kitpvp.core.tag;
 
 import dev.notcacha.kitpvp.api.tag.Tag;
 import dev.notcacha.kitpvp.api.tag.applier.TagApplier;

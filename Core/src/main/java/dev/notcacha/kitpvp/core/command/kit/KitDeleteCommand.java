@@ -1,11 +1,9 @@
 package dev.notcacha.kitpvp.core.command.kit;
 
 import javax.inject.Inject;
-import dev.notcacha.kitpvp.api.cache.ObjectCache;
 import dev.notcacha.kitpvp.api.kit.Kit;
 import dev.notcacha.kitpvp.api.message.MessageHandler;
-import dev.notcacha.kitpvp.api.model.processor.ModelDeleteProcessor;
-import dev.notcacha.kitpvp.api.kit.DefaultKit;
+import dev.notcacha.kitpvp.api.repository.ModelRepository;
 import me.fixeddev.commandflow.annotated.CommandClass;
 import me.fixeddev.commandflow.annotated.annotation.Command;
 import me.fixeddev.commandflow.annotated.annotation.OptArg;
@@ -16,8 +14,7 @@ import org.bukkit.entity.Player;
 public class KitDeleteCommand implements CommandClass {
 
     @Inject private MessageHandler messageHandler;
-    @Inject private ObjectCache<Kit> kitObjectCache;
-    @Inject private ModelDeleteProcessor<Kit> modelDeleteProcessor;
+    @Inject private ModelRepository<Kit> modelRepository;
 
     @Command(names = "")
     public boolean delete(@Sender Player player, @OptArg String kitId) {
@@ -28,9 +25,9 @@ public class KitDeleteCommand implements CommandClass {
             return true;
         }
 
-        modelDeleteProcessor.deleteAsync(new DefaultKit(kitId, null, null, null, null,null)).callback(callback -> {
+        modelRepository.delete(kitId).callback(callback -> {
 
-            if (!callback.getResponse().get() || !kitObjectCache.ifPresent(kitId)) {
+            if (!callback.getResponse().isPresent()) {
                 player.sendMessage(
                         messageHandler.getMessage("kit.not-exists").replace("%kit_name%", kitId)
                 );

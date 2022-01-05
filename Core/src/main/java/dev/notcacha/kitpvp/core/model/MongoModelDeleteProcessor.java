@@ -1,7 +1,6 @@
 package dev.notcacha.kitpvp.core.model;
 
 import com.google.common.util.concurrent.ListeningExecutorService;
-import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import dev.notcacha.kitpvp.api.ModelBinderData;
@@ -32,27 +31,28 @@ public class MongoModelDeleteProcessor<T extends Model>  implements ModelDeleteP
     }
 
     @Override
-    public boolean deleteSync(T object) {
-        mongoCollection.deleteOne(Filters.eq("_id", object.getId()));
-        objectCache.removeObject(object.getId());
+    public boolean deleteSync(String id) {
+        mongoCollection.deleteOne(Filters.eq("_id", id));
+
+        objectCache.removeObject(id);
 
         return true;
     }
 
     @Override
-    public void deleteSync(Set<T> objects) {
-        objects.forEach(this::deleteSync);
+    public void deleteSync(Set<String> ids) {
+        ids.forEach(this::deleteSync);
     }
 
     @Override
-    public AsyncResponse<Boolean> deleteAsync(T object) {
-        return new SimpleAsyncResponse<>(executorService.submit(() -> new WrappedResponse<>(Response.Status.SUCCESS, deleteSync(object))));
+    public AsyncResponse<Boolean> deleteAsync(String id) {
+        return new SimpleAsyncResponse<>(executorService.submit(() -> new WrappedResponse<>(Response.Status.SUCCESS, deleteSync(id))));
     }
 
     @Override
-    public AsyncResponse<Void> deleteAsync(Set<T> objects) {
+    public AsyncResponse<Void> deleteAsync(Set<String> ids) {
         return new SimpleAsyncResponse<>(executorService.submit(() -> {
-            deleteSync(objects);
+            deleteSync(ids);
 
             return null;
         }));

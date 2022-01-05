@@ -13,7 +13,7 @@ public interface ModelSaveProcessor<T extends Model> extends Processor {
      * {@link T#getId()} this will be the identifier of this object that will be used when it is obtained
      */
 
-    void saveSync(T model);
+    void saveSync(T model, boolean saveInCached);
 
     /**
      * Save multiple objects in the storage, {@link T} will be the saved objects,
@@ -28,7 +28,7 @@ public interface ModelSaveProcessor<T extends Model> extends Processor {
      * @return {@link AsyncResponse} to handle the asynchronous response
      */
 
-    AsyncResponse<Void> saveAsync(T model);
+    AsyncResponse<Void> saveAsync(T model, boolean saveInCached);
 
     /**
      * Save multiple {@link T} objects asynchronously

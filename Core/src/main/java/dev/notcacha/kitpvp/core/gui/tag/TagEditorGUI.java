@@ -6,6 +6,7 @@ import me.patothebest.guiframework.gui.anvil.AnvilSlot;
 import me.patothebest.guiframework.gui.inventory.GUIPage;
 import me.patothebest.guiframework.gui.inventory.button.AnvilButton;
 import me.patothebest.guiframework.itemstack.ItemStackBuilder;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
@@ -55,7 +56,8 @@ public class TagEditorGUI extends GUIPage {
 
                     tag.setPrefix(output);
                     event.setWillClose(true);
-                    return;
+
+                    break;
                 }
 
                 case "suffix": {
@@ -63,22 +65,25 @@ public class TagEditorGUI extends GUIPage {
 
                     tag.setSuffix(output);
                     event.setWillClose(true);
-                    return;
+
+                    break;
                 }
 
                 case "list_name": {
                     message("list_name");
 
                     tag.setListName(output);
+
                     event.setWillClose(true);
-                    return;
+
+                    break;
                 }
 
             }
 
-            event.setWillClose(true);
+
         }).onCancel(() -> {})
-                .useSlot(AnvilSlot.INPUT_LEFT, item);
+                .useSlot(AnvilSlot.INPUT_LEFT, item.name(ChatColor.stripColor(item.getItemMeta().getDisplayName())));
 
         return anvilButton;
     }

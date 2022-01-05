@@ -1,10 +1,6 @@
 package dev.notcacha.kitpvp.core.repository;
 
-import com.google.common.util.concurrent.ListeningExecutorService;
 import dev.notcacha.kitpvp.api.async.AsyncResponse;
-import dev.notcacha.kitpvp.api.async.Response;
-import dev.notcacha.kitpvp.core.async.SimpleAsyncResponse;
-import dev.notcacha.kitpvp.core.async.WrappedResponse;
 import dev.notcacha.kitpvp.api.model.Model;
 import dev.notcacha.kitpvp.api.model.processor.ModelDeleteProcessor;
 import dev.notcacha.kitpvp.api.model.processor.ModelFindProcessor;
@@ -22,7 +18,6 @@ public class CoreModelRepository<T extends Model> implements ModelRepository<T> 
     @Inject private ModelFindProcessor<T> modelFindProcessor;
     @Inject private ModelSaveProcessor<T> modelSaveProcessor;
     @Inject private ModelDeleteProcessor<T> modelDeleteProcessor;
-    @Inject private ListeningExecutorService executorService;
 
     @Override
     public Optional<T> findOneSync(String id) {
@@ -31,7 +26,7 @@ public class CoreModelRepository<T extends Model> implements ModelRepository<T> 
 
     @Override
     public AsyncResponse<T> findOne(String id) {
-        return new SimpleAsyncResponse<>(executorService.submit(() -> new WrappedResponse<>(Response.Status.SUCCESS, findOneSync(id).orElse(null))));
+        return modelFindProcessor.findOneAsync(id);
     }
 
     @Override
@@ -40,19 +35,12 @@ public class CoreModelRepository<T extends Model> implements ModelRepository<T> 
     }
 
     @Override
-    public AsyncResponse<Void> save(T object) {
-        return new SimpleAsyncResponse<>(executorService.submit(() -> {
-            modelSaveProcessor.saveAsync(object);
-            return null;
-        }));
+    public AsyncResponse<Void> save(T object, boolean saveInCached) {
+        return modelSaveProcessor.saveAsync(object, saveInCached);
     }
 
     @Override
-    public AsyncResponse<Void> delete(String id) {
-        return new SimpleAsyncResponse<>(executorService.submit(() -> {
-            findOneSync(id).ifPresent((model) -> modelDeleteProcessor.deleteAsync(model));
-
-            return null;
-        }));
+    public AsyncResponse<Boolean> delete(String id) {
+        return modelDeleteProcessor.deleteAsync(id);
     }
 }

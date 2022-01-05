@@ -5,36 +5,30 @@ import dev.notcacha.kitpvp.api.ModelBinderData;
 import dev.notcacha.kitpvp.api.binder.ModelBinder;
 import dev.notcacha.kitpvp.api.tag.Tag;
 import dev.notcacha.kitpvp.api.tag.applier.TagApplier;
-import dev.notcacha.kitpvp.api.tag.create.TagCreate;
-import dev.notcacha.kitpvp.api.tag.delete.TagDelete;
 import dev.notcacha.kitpvp.core.binder.CoreModelBinder;
-import dev.notcacha.kitpvp.core.tag.util.CoreTagApplier;
-import dev.notcacha.kitpvp.core.tag.util.CoreTagCreate;
-import dev.notcacha.kitpvp.core.tag.util.CoreTagDelete;
+import dev.notcacha.kitpvp.core.tag.CoreTagApplier;
 import dev.notcacha.kitpvp.core.util.TypeReferenceUtil;
 
 public class TagModule extends AbstractModule {
 
     @Override
     protected void configure() {
-        ModelBinder<Tag> userModelBinder = new CoreModelBinder<>(
+        ModelBinder<Tag> tagModelBinder = new CoreModelBinder<>(
                 binder(),
                 Tag.class,
                 ModelBinderData.forStorage(
-                        TypeReferenceUtil.getTypeOf(Tag.class),
-                        "/tags/"
+                        TypeReferenceUtil.getTypeOf(Tag.class)
                 )
         );
 
-        userModelBinder.bindCache().bindDefault();
-        userModelBinder.bindRepository();
-        userModelBinder.bindProcessors()
+        tagModelBinder.bindCache().bindDefault();
+        tagModelBinder.bindProcessors()
                 .bindFind()
                 .bindDelete()
                 .bindSave();
 
+        tagModelBinder.bindRepository();
+
         bind(TagApplier.class).to(CoreTagApplier.class).singleton();
-        bind(TagCreate.class).to(CoreTagCreate.class).singleton();
-        bind(TagDelete.class).to(CoreTagDelete.class).singleton();
     }
 }

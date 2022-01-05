@@ -43,8 +43,9 @@ public class TagGUI extends GUIPage {
                 Set<Tag> tagSet = callbackResponse.get();
 
                 if (tagSet.size() > 0) {
+
                     tagSet.forEach(tag -> {
-                        item.name(tag.getListName() == null ? ChatColor.GRAY + tag.getId() : ChatColor.translateAlternateColorCodes('&', tag.getListName()));
+                        item.name(tag.getListName());
 
                         List<String> lore = messageHandler.getMessages("tag.gui.description");
                         lore.replaceAll(text -> text.replace("%prefix%", tag.getPrefix()).replace("%suffix%", tag.getSuffix()));

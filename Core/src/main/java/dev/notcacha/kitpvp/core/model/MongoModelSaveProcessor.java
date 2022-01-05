@@ -30,19 +30,23 @@ public class MongoModelSaveProcessor<T extends Model> implements ModelSaveProces
     }
 
     @Override
-    public void saveSync(T model) {
+    public void saveSync(T model, boolean saveInCached) {
         mongoCollection.replaceOne(Filters.eq("_id", model.getId()), model, new ReplaceOptions().upsert(true));
+
+        if (saveInCached) {
+            objectCache.addObject(model);
+        }
     }
 
     @Override
     public void saveSync(Set<T> models) {
-        models.forEach(this::saveSync);
+        models.forEach(model -> saveSync(model, false));
     }
 
     @Override
-    public AsyncResponse<Void> saveAsync(T model) {
+    public AsyncResponse<Void> saveAsync(T model, boolean saveInCached) {
         return new SimpleAsyncResponse<>(executorService.submit(() -> {
-            saveSync(model);
+            saveSync(model, saveInCached);
 
             return null;
         }));
