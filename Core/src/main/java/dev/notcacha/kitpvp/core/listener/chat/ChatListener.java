@@ -31,7 +31,7 @@ public class ChatListener implements Listener {
         }
 
         String message = event.getMessage();
-        String format = formatter.format(player, PlaceholderAPIUtil.detectAndApply(player, messageHandler.getMessage("chat.format")),message);
+        String format = formatter.format(player, messageHandler.getMessage("chat.format"),message);
         event.setFormat("%2$s");
         event.setMessage(format);
     }
