@@ -42,7 +42,7 @@ public class MongoModelFindProcessor<T extends Model> implements ModelFindProces
             model = mongoCollection.find(Filters.eq("_id", id)).first();
 
             if (model != null) {
-                objectCache.addObject(model);
+                objectCache.update(model);
             }
         }
 
@@ -61,12 +61,12 @@ public class MongoModelFindProcessor<T extends Model> implements ModelFindProces
 
     @Override
     public AsyncResponse<Set<T>> findAllAsync() {
-        Set<T> set = mongoCollection.find().into(new HashSet<>());
-
-        objectCache.getAllPresent().forEach(modelCached -> {
-            if (!set.contains(modelCached)) set.add(modelCached);
+        mongoCollection.find().into(new HashSet<>()).forEach(model -> {
+            if (!objectCache.ifPresent(model.getId())) {
+                objectCache.addObject(model);
+            }
         });
 
-        return new SimpleAsyncResponse<>(executorService.submit(() -> new WrappedResponse<>(Response.Status.SUCCESS, set)));
+        return new SimpleAsyncResponse<>(executorService.submit(() -> new WrappedResponse<>(Response.Status.SUCCESS, objectCache.getAllPresent())));
     }
 }

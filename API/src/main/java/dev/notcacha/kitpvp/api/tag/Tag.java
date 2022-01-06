@@ -42,7 +42,7 @@ public interface Tag extends Model {
      */
 
     @JsonProperty("list_name")
-    @Nullable String getListName();
+    String getListName();
 
     /**
      * Change the list name of this tag.

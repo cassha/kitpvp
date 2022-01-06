@@ -48,7 +48,6 @@ public class DefaultTag implements Tag {
         return this.suffix;
     }
 
-    @Nullable
     @Override
     public String getListName() {
         return listName;

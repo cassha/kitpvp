@@ -47,8 +47,6 @@ public class PlayerListener implements Listener {
 
         User user = userObjectCache.findIfPresent(event.getPlayer().getUniqueId().toString()).orElse(null);
 
-        System.out.println(user);
-
         plugin.getServer().getPluginManager().callEvent(new UserLeaveEvent(user, event.getPlayer()));
 
         userModelSaveProcessor.saveAsync(user, false);

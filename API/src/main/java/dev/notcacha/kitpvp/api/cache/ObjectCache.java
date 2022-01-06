@@ -1,5 +1,6 @@
 package dev.notcacha.kitpvp.api.cache;
 
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -41,15 +42,16 @@ public interface ObjectCache<O> {
     boolean ifPresent(String objectId);
 
     /**
+     * Remove all object in cached.
+     */
+
+    void clear();
+
+    /**
      * @return All objects that are present in the cache.
      */
 
     Set<O> getAllPresent();
 
-    /**
-     * Remove all object in cached.
-     */
-
-    void clear();
 
 }
