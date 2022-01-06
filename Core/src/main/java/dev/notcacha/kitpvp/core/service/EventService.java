@@ -4,6 +4,7 @@ import javax.inject.Inject;
 import dev.notcacha.kitpvp.api.service.Service;
 import dev.notcacha.kitpvp.core.listener.PlayerDeathListener;
 import dev.notcacha.kitpvp.core.listener.PlayerListener;
+import dev.notcacha.kitpvp.core.listener.chat.ChatListener;
 import dev.notcacha.kitpvp.core.listener.user.UserListener;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
@@ -15,6 +16,7 @@ public class EventService implements Service {
     @Inject private PlayerListener playerListener;
     @Inject private PlayerDeathListener deathListener;
     @Inject private UserListener userListener;
+    @Inject private ChatListener chatListener;
 
     @Override
     public void start() {
@@ -23,7 +25,8 @@ public class EventService implements Service {
         register(
                 playerListener,
                 deathListener,
-                userListener
+                userListener,
+                chatListener
         );
     }
 

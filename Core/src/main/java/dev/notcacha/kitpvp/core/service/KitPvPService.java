@@ -13,6 +13,7 @@ public class KitPvPService implements Service {
     @Inject @Named("event") private Service eventService;
     @Inject @Named("spawn") private Service spawnsService;
     @Inject @Named("save") private  Service saveService;
+    @Inject @Named("hook-register") private Service hookRegisterService;
 
     @Override
     public void start() {
@@ -21,7 +22,7 @@ public class KitPvPService implements Service {
         spawnsService.start();
         commandService.start();
         eventService.start();
-
+        hookRegisterService.start();
     }
 
     @Override
@@ -32,6 +33,6 @@ public class KitPvPService implements Service {
 
         saveService.stop();
 
-        plugin.getServer().getLogger().info("[KitPvP] The main service has been started.");
+        plugin.getServer().getLogger().info("[KitPvP] The main service has been stopped.");
     }
 }

@@ -52,6 +52,13 @@
         </resources>
     </build>
 
+    <repositories>
+        <repository>
+            <id>placeholderapi</id>
+            <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
+        </repository>
+    </repositories>
+
 
     <dependencies>
         <dependency>
@@ -69,6 +76,12 @@
             <groupId>com.minebone</groupId>
             <artifactId>GUIFramework</artifactId>
             <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>me.clip</groupId>
+            <artifactId>placeholderapi</artifactId>
+            <version>2.9.2</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 

@@ -2,6 +2,7 @@ package dev.notcacha.kitpvp.core.service;
 
 import javax.inject.Inject;
 import dev.notcacha.kitpvp.api.service.Service;
+import dev.notcacha.kitpvp.core.command.ChatCommand;
 import dev.notcacha.kitpvp.core.command.KitCommand;
 import dev.notcacha.kitpvp.core.command.spawn.SetSpawnCommand;
 import dev.notcacha.kitpvp.core.command.SpawnCommand;
@@ -29,6 +30,7 @@ public class CommandService implements Service {
     @Inject private SetSpawnCommand setSpawnCommand;
     @Inject private KitCommand kitCommand;
     @Inject private TagCommand tagCommand;
+    @Inject private ChatCommand chatCommand;
 
     @Override
     public void start() {
@@ -38,7 +40,8 @@ public class CommandService implements Service {
                 setSpawnCommand,
                 spawnCommand,
                 kitCommand,
-                tagCommand
+                tagCommand,
+                chatCommand
         );
     }
 

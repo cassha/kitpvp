@@ -1,5 +1,6 @@
 package dev.notcacha.kitpvp.core;
 
+import dev.notcacha.kitpvp.core.chat.module.ChatModule;
 import me.yushust.inject.AbstractModule;
 import dev.notcacha.kitpvp.core.command.flow.FlowModule;
 import dev.notcacha.kitpvp.core.file.module.FileModule;
@@ -36,6 +37,7 @@ public class KitPvPModule extends AbstractModule {
 
         install(new FlowModule());
 
+        install(new ChatModule());
         install(new SpawnModule());
         install(new ServiceModule());
         install(new MessageModule());

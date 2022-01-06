@@ -106,3 +106,12 @@ tag:
       - "&7Prefix: %prefix%"
       - "&7Suffix: %suffix%"
       - "&2"
+chat:
+  usage:
+    - "&cSub-Commands availables: &7<clear>"
+  format: "&7%player_name% &f: &7%message%"
+  clear: "&9The chat has been clear by &f%player_name%&9."
+  muted:
+    error-talk: "&cThe chat is already muted."
+    mute: "&cThe chat has been muted by &7%player_name%&c."
+    unmute: "&cThe chat has been un-muted by &7%player_name%&c."
