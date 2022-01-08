@@ -18,16 +18,14 @@ public class KitDeleteCommand implements CommandClass {
 
     @Command(names = "")
     public boolean delete(@Sender Player player, @OptArg String kitId) {
-
-        if (kitId.trim().isEmpty()) {
+        if (kitId == null || kitId.trim().isEmpty()) {
             player.sendMessage(messageHandler.getMessage("kit.delete.usage"));
 
             return true;
         }
 
         modelRepository.delete(kitId).callback(callback -> {
-
-            if (!callback.getResponse().isPresent()) {
+            if (!callback.getResponse().get()) {
                 player.sendMessage(
                         messageHandler.getMessage("kit.not-exists").replace("%kit_name%", kitId)
                 );

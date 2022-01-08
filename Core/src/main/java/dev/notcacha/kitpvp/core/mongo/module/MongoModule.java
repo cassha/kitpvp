@@ -40,6 +40,11 @@ public class MongoModule extends AbstractModule {
             public String getDatabase() {
                 return plugin.getConfig().getString("mongo.database");
             }
+
+            @Override
+            public String getStringConnection() {
+                return plugin.getConfig().getString("mongo.uri", null);
+            }
         };
     }
 

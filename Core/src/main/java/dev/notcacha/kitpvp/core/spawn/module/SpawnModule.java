@@ -8,4 +8,5 @@ public class SpawnModule extends AbstractModule {
     protected void configure() {
         bind(SpawnManager.class).toProvider(() -> new SpawnManager(null)).singleton();
     }
+
 }

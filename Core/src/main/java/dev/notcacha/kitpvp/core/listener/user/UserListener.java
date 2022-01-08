@@ -5,7 +5,6 @@ import dev.notcacha.kitpvp.api.event.UserDeathEvent;
 import dev.notcacha.kitpvp.api.event.UserJoinEvent;
 import dev.notcacha.kitpvp.api.event.UserLeaveEvent;
 import dev.notcacha.kitpvp.api.message.MessageHandler;
-import dev.notcacha.kitpvp.core.spawn.SpawnManager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
@@ -14,7 +13,6 @@ public class UserListener implements Listener {
 
     @Inject private MessageHandler messageHandler;
     @Inject private Plugin plugin;
-    @Inject private SpawnManager spawnManager;
 
     @EventHandler
     public void onUserJoin(UserJoinEvent event) {
@@ -28,11 +26,6 @@ public class UserListener implements Listener {
                 onlineMessage.replace("%player_name%", event.getPlayer().getName())
         ));
 
-        if (spawnManager.isDefaultTeleport()) {
-            if (!spawnManager.isPresent()) return;
-
-            event.getPlayer().teleport(spawnManager.getLocation());
-        }
     }
 
     @EventHandler

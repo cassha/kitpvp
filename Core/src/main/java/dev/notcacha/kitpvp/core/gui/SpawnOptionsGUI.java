@@ -18,6 +18,8 @@ public class SpawnOptionsGUI extends GUIPage {
         super(plugin, player, rawName, 9);
         this.messageHandler = messageHandler;
         this.spawnManager = spawnManager;
+
+        build();
     }
 
     @Override

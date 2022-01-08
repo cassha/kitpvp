@@ -31,11 +31,13 @@ public class MongoModelSaveProcessor<T extends Model> implements ModelSaveProces
 
     @Override
     public void saveSync(T model, boolean saveInCached) {
-        mongoCollection.replaceOne(Filters.eq("_id", model.getId()), model, new ReplaceOptions().upsert(true));
-
         if (saveInCached) {
-            objectCache.addObject(model);
+            objectCache.update(model);
+
+            return;
         }
+
+        mongoCollection.replaceOne(Filters.eq("_id", model.getId()), model, new ReplaceOptions().upsert(true));
     }
 
     @Override

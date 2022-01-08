@@ -8,6 +8,7 @@ import dev.notcacha.kitpvp.api.user.User;
 import dev.notcacha.kitpvp.core.model.MongoModelFindProcessor;
 import dev.notcacha.kitpvp.api.user.KitUser;
 import org.bukkit.Bukkit;
+import org.bukkit.plugin.Plugin;
 
 import javax.inject.Inject;
 import java.util.Optional;
@@ -18,8 +19,8 @@ public class MongoModelUserFindProcessor extends MongoModelFindProcessor<User> {
     private final ObjectCache<User> userObjectCache;
 
     @Inject
-    public MongoModelUserFindProcessor(ListeningExecutorService executorService, ObjectCache<User> objectCache, ModelBinderData<User> modelBinderData, MongoConnection mongoConnection) {
-        super(executorService, objectCache, modelBinderData, mongoConnection);
+    public MongoModelUserFindProcessor(ListeningExecutorService executorService, ObjectCache<User> objectCache, ModelBinderData<User> modelBinderData, MongoConnection mongoConnection, Plugin plugin) {
+        super(executorService, objectCache, modelBinderData, mongoConnection, plugin);
 
         this.userObjectCache = objectCache;
     }

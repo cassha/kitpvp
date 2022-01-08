@@ -21,7 +21,7 @@ public class ChatClearCommand implements CommandClass {
 
         plugin.getServer().getOnlinePlayers().forEach(onlinePlayer -> {
 
-            for (int i = 0; i < 90; i ++) {
+            for (int i = 0; i < 120; i ++) {
                 onlinePlayer.sendMessage("");
             }
 

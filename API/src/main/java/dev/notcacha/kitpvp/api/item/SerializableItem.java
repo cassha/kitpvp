@@ -5,18 +5,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import dev.notcacha.kitpvp.api.item.addons.DefaultDecorationCompound;
 import dev.notcacha.kitpvp.api.item.addons.DefaultEnchantmentCompound;
-import org.bukkit.ChatColor;
+import dev.notcacha.kitpvp.api.util.Colorize;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 /**
- * Item that can be built to an {@link org.bukkit.inventory.ItemStack}
+ * Item that can be built to an {@link ItemStack}
  */
 
 @JsonDeserialize(as = DefaultSerializableItem.class)
@@ -100,19 +101,22 @@ public interface SerializableItem {
         ItemStack itemStack = new ItemStack(Material.matchMaterial(getMaterialName()), getNumber());
         ItemMeta itemMeta = itemStack.getItemMeta();
 
-        itemMeta.setDisplayName(
-                ChatColor.translateAlternateColorCodes(
-                        '&',
-                        getDecoration().getDisplayName()
-                )
-        );
+        if (getDecoration().getDisplayName() != null) {
+            itemMeta.setDisplayName(
+                    Colorize.colorize(
+                            getDecoration().getDisplayName()
+                    )
+            );
 
-        List<String> lore = getDecoration().getDescription();
-        lore.replaceAll(message -> message.replace(message, ChatColor.translateAlternateColorCodes('&', message)));
+        }
 
-        itemMeta.setLore(
-                lore
-        );
+        if (getDecoration().getDescription() != null) {
+            itemMeta.setLore(
+                    Colorize.colorize(
+                            getDecoration().getDescription()
+                    )
+            );
+        }
 
         for (EnchantmentCompound enchantmentCompound : getEnchantments()) {
             Enchantment type = Enchantment.getByName(enchantmentCompound.getType());
@@ -120,6 +124,8 @@ public interface SerializableItem {
                 itemMeta.addEnchant(type, enchantmentCompound.getLevel(), true);
             }
         }
+
+        itemStack.setItemMeta(itemMeta);
 
         return itemStack;
     }

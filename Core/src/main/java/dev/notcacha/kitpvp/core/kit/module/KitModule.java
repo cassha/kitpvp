@@ -1,5 +1,7 @@
 package dev.notcacha.kitpvp.core.kit.module;
 
+import dev.notcacha.kitpvp.api.kit.applier.KitApplier;
+import dev.notcacha.kitpvp.core.kit.DefaultKitApplier;
 import me.yushust.inject.AbstractModule;
 import dev.notcacha.kitpvp.api.ModelBinderData;
 import dev.notcacha.kitpvp.api.binder.ModelBinder;
@@ -26,5 +28,7 @@ public class KitModule extends AbstractModule {
                 .bindSave();
 
         kitModelBinder.bindRepository();
+
+        bind(KitApplier.class).to(DefaultKitApplier.class).singleton();
     }
 }

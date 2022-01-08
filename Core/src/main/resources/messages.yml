@@ -29,6 +29,7 @@ spawn:
         is-disabled: "&cThe default teleport is already disabled."
         disabled: "&cThe default teleport disabled."
 kit:
+  gui-title: "&7Kits"
   usage:
     - "&eThe correct usage is &c/kit <kitname/create/delete/edit>"
   exists: "&eThe kit &9%kit_name% &ealready exists."
@@ -39,30 +40,82 @@ kit:
   delete:
     success: "&eThe kit &9%kit_name% &ehas been delete."
     usage: "&eThe correct usage is &c/kit delete <kitname>"
+  apply:
+    success: "&9The kit &f%kit_id% &9has been applied."
+    error: "&cYou no have permissions to apply kit &7%kit_id%&c."
   editor:
+    set:
+      items:
+        usage: "&cCorrect usage is &7/kit setitems <kit_name> "
+        error: "&cThe kit &7%kit_id% &chas been set items if not exists."
+        empty-items: "&cYou no have items in inventory."
+        success: "&9The items has been set to &f%kit_id%&9 kit."
+      armor:
+        usage: "&cCorrect usage is &7/kit setarmor <kit_name> "
+        error: "&cThe kit &7%kit_id% &chas been set armor if not exists."
+        empty-armor: "&cYou no have armor equip."
+        success: "&9The armor has been set to &f%kit_id%&9 kit."
     messages:
       usage: "&cCorrect usage is /kit edit <tag_id>"
       error: "&cThe kit %tag_id% not exists."
-    title: "&7Kit editor."
+    title: "&7Editing %kit_id% Kit."
     items:
-      decoration:
-        name: "&9Edit the decoration."
+      icon:
+        change: "&9The icon of kit &f%kit_id% &9has changed."
+        name: "&9Edit the Icon."
         lore:
           - "&4"
-          - "&7Edit the display name and lore of kit."
-          - "&4"
-          - "&eClick me"
+          - "&7Edit the icon of kit."
           - "&5"
-      contents:
-        messages:
-          success: "&aThe contents has been changed from kit."
-        name: "&9Edit the contents."
+          - "&eClick me"
+          - "&1"
+      display_name:
+        message: "&9The display name of kit &f%kit_id% &9has been changed to &f%display_name%&9."
+        name: "&9Edit the Display Name."
         lore:
           - "&4"
-          - "&7Edit the inventory and armor contents of kit."
-          - "&7Your items and armor has been set to kit."
+          - "&7Edit the display name of kit."
+          - "&1"
           - "&eClick me"
           - "&5"
+      description:
+        name: "&9Edit the Description."
+        lore:
+          - "&4"
+          - "&7Edit the description of kit."
+          - "&1"
+          - "&eClick me"
+          - "&5"
+        sub-inv:
+          clear:
+            message: "&9The description has been clear of &f%kit_id% &9kit."
+            name: "&9Clear description."
+            lore:
+              - "&2"
+              - "&7Clear all description of kit."
+              - "&1"
+              - "&eClick me."
+              - "&6"
+          add_line:
+            message: "&9The line has been added to &f%kit_id% &9kit."
+            name: "&9Add line"
+            lore:
+              - "&2"
+              - "&7Add Line of description of kit."
+              - "&1"
+              - "&eClick me."
+              - "&6"
+          quit_line:
+            message: "&9The line has been quit to &f%kit_id% &9kit."
+            invalid-number: "&cPlease enter a valid number!"
+            error: "&cThe line &7%line% &cnot exists."
+            name: "&9Quit line"
+            lore:
+              - "&2"
+              - "&7Quit Line of description of kit."
+              - "&1"
+              - "&eClick me."
+              - "&6"
 tag:
   create:
     usage: "&cCorrect usage is &7/tag create <tag_id>"
@@ -109,7 +162,7 @@ tag:
 chat:
   usage:
     - "&cSub-Commands availables: &7<clear>"
-  format: "&7%player_name% &f: &7%message%"
+  format: "%luckperms_prefix%%player_name% &f: &7%message%"
   clear: "&9The chat has been clear by &f%player_name%&9."
   muted:
     error-talk: "&cThe chat is already muted."

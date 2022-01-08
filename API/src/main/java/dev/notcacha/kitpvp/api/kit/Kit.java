@@ -19,6 +19,13 @@ public interface Kit extends Model {
     String getDisplayName();
 
     /**
+     * Change the display name from kit.
+     * @param displayName new has been applied.
+     */
+
+    void setDisplayName(String displayName);
+
+    /**
      * @return The description from kit.
      */
 
@@ -26,11 +33,25 @@ public interface Kit extends Model {
     List<String> getDescription();
 
     /**
+     * Change the description from kit.
+     * @param description new has been applied.
+     */
+
+    void setDescription(List<String> description);
+
+    /**
      * @return The icon from kit in {@link SerializableItem} format.
      */
 
     @JsonProperty("icon")
     SerializableItem getIcon();
+
+    /**
+     * Change the icon from kit.
+     * @param icon new has been applied.
+     */
+
+    void setIcon(SerializableItem icon);
 
     /**
      * @return All items in the kit inventory in map format

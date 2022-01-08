@@ -1,6 +1,8 @@
 # The database name is kitpvp
 
 mongo:
+# In case you don't want to make the connection via URI, delete this path.
+  uri: null
   username: username
   password: password
   host: localhost

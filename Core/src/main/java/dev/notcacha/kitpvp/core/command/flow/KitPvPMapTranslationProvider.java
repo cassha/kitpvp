@@ -1,7 +1,8 @@
 package dev.notcacha.kitpvp.core.command.flow;
 
 import javax.inject.Inject;
-import com.google.inject.Singleton;
+import javax.inject.Singleton;
+
 import dev.notcacha.kitpvp.api.message.MessageHandler;
 import me.fixeddev.commandflow.Namespace;
 import me.fixeddev.commandflow.bukkit.BukkitCommandManager;

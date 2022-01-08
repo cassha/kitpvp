@@ -11,9 +11,9 @@ import java.util.Map;
 public class DefaultKit implements Kit {
 
     private final String id;
-    private final String displayName;
-    private final List<String> description;
-    private final SerializableItem icon;
+    private String displayName;
+    private List<String> description;
+    private SerializableItem icon;
     private Map<Integer, SerializableItem> inventoryContents;
     private Map<Integer, SerializableItem> armorContents;
 
@@ -29,6 +29,21 @@ public class DefaultKit implements Kit {
         this.armorContents = armorContents;
     }
 
+
+    @Override
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
+    @Override
+    public void setDescription(List<String> description) {
+        this.description = description;
+    }
+
+    @Override
+    public void setIcon(SerializableItem icon) {
+        this.icon = icon;
+    }
 
     @Override
     public String getDisplayName() {

@@ -1,6 +1,7 @@
 package dev.notcacha.kitpvp.api.mongo.configuration;
 
 import com.mongodb.ConnectionString;
+import com.mongodb.lang.Nullable;
 
 public interface MongoConfiguration {
 
@@ -37,19 +38,27 @@ public interface MongoConfiguration {
     String getDatabase();
 
     /**
+     * @return The string mongo connection.
+     */
+
+    @Nullable
+    String getStringConnection();
+
+    /**
      * @return New ConnectionString instance using this properties.
      * */
 
     default ConnectionString toConnectionString() {
         return new ConnectionString(
-                String.format(
-                        STRING_CONNECTION,
-                        getUsername(),
-                        getPassword(),
-                        getHost(),
-                        getPort(),
-                        getDatabase()
-                )
+                (getStringConnection() != null) ? getStringConnection() :
+                        String.format(
+                                STRING_CONNECTION,
+                                getUsername(),
+                                getPassword(),
+                                getHost(),
+                                getPort(),
+                                getDatabase()
+                        )
         );
 
     }

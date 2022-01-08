@@ -1,7 +1,6 @@
 package dev.notcacha.kitpvp.core.command.kit;
 
 import javax.inject.Inject;
-import dev.notcacha.kitpvp.api.cache.ObjectCache;
 import dev.notcacha.kitpvp.api.kit.Kit;
 import dev.notcacha.kitpvp.api.message.MessageHandler;
 import dev.notcacha.kitpvp.api.repository.ModelRepository;
@@ -13,19 +12,17 @@ import me.fixeddev.commandflow.annotated.annotation.OptArg;
 import me.fixeddev.commandflow.bukkit.annotation.Sender;
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 
 @Command(names = {"create", "c", "add"}, permission = "kitpvp.kit.create")
 public class KitCreateCommand implements CommandClass {
 
     @Inject private MessageHandler messageHandler;
-    @Inject private ObjectCache<Kit> kitObjectCache;
     @Inject private ModelRepository<Kit> modelRepository;
 
     @Command(names = "")
     public boolean create(@Sender Player player, @OptArg String kitId) {
-        if (kitId.trim().isEmpty()) {
+        if (kitId == null || kitId.trim().isEmpty()) {
             player.sendMessage(
                     messageHandler.getMessage(
                             "kit.create.usage"
@@ -46,11 +43,13 @@ public class KitCreateCommand implements CommandClass {
                     .setMaterial("STONE")
                     .setDisplayName(
                             "&9Example stone."
+                    ).setDescription(
+                            Collections.singletonList("&7Example list of kit &f: &9" + kitId)
                     )
                     .build()
                     , new HashMap<>(), new HashMap<>());
 
-            kitObjectCache.addObject(kit);
+            modelRepository.save(kit, true);
 
             player.sendMessage(messageHandler.getMessage("kit.create.success").replace("%kit_name%", kitId));
         });

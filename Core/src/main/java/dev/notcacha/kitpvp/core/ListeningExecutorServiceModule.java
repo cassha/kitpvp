@@ -3,7 +3,6 @@ package dev.notcacha.kitpvp.core;
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.common.util.concurrent.MoreExecutors;
 import me.yushust.inject.AbstractModule;
-import com.google.inject.Scopes;
 
 import java.util.concurrent.Executors;
 

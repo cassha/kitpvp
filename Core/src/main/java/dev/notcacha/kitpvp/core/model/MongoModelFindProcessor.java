@@ -13,6 +13,8 @@ import dev.notcacha.kitpvp.api.model.processor.ModelFindProcessor;
 import dev.notcacha.kitpvp.api.mongo.MongoConnection;
 import dev.notcacha.kitpvp.core.async.SimpleAsyncResponse;
 import dev.notcacha.kitpvp.core.async.WrappedResponse;
+import dev.notcacha.kitpvp.core.util.CountdownTimerUtil;
+import org.bukkit.plugin.Plugin;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -24,11 +26,15 @@ public class MongoModelFindProcessor<T extends Model> implements ModelFindProces
     private final ObjectCache<T> objectCache;
 
     private final MongoCollection<T> mongoCollection;
+    private final Plugin plugin;
+
+    private boolean loadOfMongo = false;
 
     @Inject
-    public MongoModelFindProcessor(ListeningExecutorService executorService, ObjectCache<T> objectCache, ModelBinderData<T> modelBinderData, MongoConnection mongoConnection) {
+    public MongoModelFindProcessor(ListeningExecutorService executorService, ObjectCache<T> objectCache, ModelBinderData<T> modelBinderData, MongoConnection mongoConnection, Plugin plugin) {
         this.executorService = executorService;
         this.objectCache = objectCache;
+        this.plugin = plugin;
         this.mongoCollection = mongoConnection.getClient()
                 .getDatabase("kitpvp")
                 .getCollection(modelBinderData.getType().getRawType().getSimpleName().toLowerCase(), modelBinderData.getType().getRawType());
@@ -61,11 +67,25 @@ public class MongoModelFindProcessor<T extends Model> implements ModelFindProces
 
     @Override
     public AsyncResponse<Set<T>> findAllAsync() {
-        mongoCollection.find().into(new HashSet<>()).forEach(model -> {
-            if (!objectCache.ifPresent(model.getId())) {
-                objectCache.addObject(model);
-            }
-        });
+        if (!loadOfMongo) {
+            mongoCollection.find().into(new HashSet<>()).forEach(model -> {
+                if (!objectCache.ifPresent(model.getId())) {
+                    objectCache.addObject(model);
+
+                    new CountdownTimerUtil(
+                            plugin,
+                            120,
+                            () -> {
+                                loadOfMongo = true;
+                            },
+                            (ignored) -> {},
+                            () -> {
+                                loadOfMongo = false;
+                            }
+                    ).scheduleTimer();
+                }
+            });
+        }
 
         return new SimpleAsyncResponse<>(executorService.submit(() -> new WrappedResponse<>(Response.Status.SUCCESS, objectCache.getAllPresent())));
     }

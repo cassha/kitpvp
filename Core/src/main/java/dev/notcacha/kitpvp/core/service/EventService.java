@@ -5,6 +5,7 @@ import dev.notcacha.kitpvp.api.service.Service;
 import dev.notcacha.kitpvp.core.listener.PlayerDeathListener;
 import dev.notcacha.kitpvp.core.listener.PlayerListener;
 import dev.notcacha.kitpvp.core.listener.chat.ChatListener;
+import dev.notcacha.kitpvp.core.listener.spawn.SpawnTeleportListener;
 import dev.notcacha.kitpvp.core.listener.user.UserListener;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
@@ -17,6 +18,7 @@ public class EventService implements Service {
     @Inject private PlayerDeathListener deathListener;
     @Inject private UserListener userListener;
     @Inject private ChatListener chatListener;
+    @Inject private SpawnTeleportListener spawnTeleportListener;
 
     @Override
     public void start() {
@@ -26,7 +28,8 @@ public class EventService implements Service {
                 playerListener,
                 deathListener,
                 userListener,
-                chatListener
+                chatListener,
+                spawnTeleportListener
         );
     }
 

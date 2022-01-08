@@ -27,16 +27,16 @@ public class TagEditorGUI extends GUIPage {
 
     @Override
     public void buildPage() {
-        ItemStackBuilder changePrefix = baseBuild("prefix");
-        ItemStackBuilder changeSuffix = baseBuild("suffix");
-        ItemStackBuilder changeListName = baseBuild("list_name");
+        ItemStackBuilder changePrefix = buildItem("prefix");
+        ItemStackBuilder changeSuffix = buildItem("suffix");
+        ItemStackBuilder changeListName = buildItem("list_name");
 
         addButton(buildAnvilButton("prefix", changePrefix), 0);
         addButton(buildAnvilButton("suffix", changeSuffix), 4);
         addButton(buildAnvilButton("list_name", changeListName), 8);
     }
 
-    private ItemStackBuilder baseBuild(String type) {
+    private ItemStackBuilder buildItem(String type) {
         return new ItemStackBuilder(Material.PAPER)
                 .name(messageHandler.getMessage("tag.edit.items." + type + ".name"))
                 .lore(messageHandler.getMessages("tag.edit.items." + type + ".lore"));

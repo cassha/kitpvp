@@ -4,7 +4,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import dev.notcacha.kitpvp.api.message.MessageHandler;
 import dev.notcacha.kitpvp.core.file.YamlFile;
-import org.bukkit.ChatColor;
+import dev.notcacha.kitpvp.api.util.Colorize;
 
 import java.util.List;
 
@@ -14,19 +14,12 @@ public class CoreMessageHandler implements MessageHandler {
 
     @Override
     public String getMessage(String path) {
-        return ChatColor.translateAlternateColorCodes('&', messageFile.getString(path, "Message not exists!"));
+        return Colorize.colorize(messageFile.getString(path, "&cMessage not exists!"));
     }
 
     @Override
     public List<String> getMessages(String path) {
-        List<String> list = messageFile.getStringList(path);
-
-        list.replaceAll(message -> message.replace(
-                message,
-                ChatColor.translateAlternateColorCodes('&', message)
-        ));
-
-        return list;
+        return Colorize.colorize(messageFile.getStringList(path));
     }
 
     @Override
