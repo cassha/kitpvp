@@ -12,22 +12,25 @@ public class KitUser implements User {
     private final String id;
     private final String username;
     private final UserStatistic userStatistic;
+    private String language;
 
     public KitUser(String id, String username) {
         this(
                 id,
                 username,
-                new DefaultUserStatistic()
+                new DefaultUserStatistic(),
+                "en"
         );
     }
 
     @ConstructorProperties({
-            "_id", "username", "statistic"
+            "_id", "username", "statistic", "language"
     })
-    public KitUser(String id, String username, UserStatistic userStatistic) {
+    public KitUser(String id, String username, UserStatistic userStatistic, String language) {
         this.id = id;
         this.username = username;
         this.userStatistic = userStatistic;
+        this.language = language;
     }
 
     @Override
@@ -43,5 +46,15 @@ public class KitUser implements User {
     @Override
     public UserStatistic getStatistics() {
         return this.userStatistic;
+    }
+
+    @Override
+    public String getLanguage() {
+        return this.language;
+    }
+
+    @Override
+    public void setLanguage(String language) {
+        this.language = language;
     }
 }

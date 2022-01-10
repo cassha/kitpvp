@@ -1,12 +1,12 @@
 package dev.notcacha.kitpvp.core.gui.kit;
 
 import dev.notcacha.kitpvp.api.kit.Kit;
-import dev.notcacha.kitpvp.api.message.MessageHandler;
 import me.patothebest.guiframework.gui.anvil.AnvilSlot;
 import me.patothebest.guiframework.gui.inventory.GUIPage;
 import me.patothebest.guiframework.gui.inventory.button.AnvilButton;
 import me.patothebest.guiframework.gui.inventory.button.SimpleButton;
 import me.patothebest.guiframework.itemstack.ItemStackBuilder;
+import me.yushust.message.MessageHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -89,16 +89,13 @@ public class KitEditorGUI extends GUIPage {
 
             kit.setDisplayName(output);
 
-            player.sendMessage(
-                    messageHandler.getMessage(
-                            String.format(PATH, "display_name", "message")
-                    ).replace(
-                            "%kit_id%",
-                            kit.getId()
-                    ).replace(
-                            "%display_name%",
-                            output
-                    )
+            messageHandler.sendReplacing(
+                    player,
+                    String.format(PATH, "display_name", "message"),
+                    "%kit_id%",
+                    kit.getId(),
+                    "%display_name%",
+                    output
             );
 
             event.setWillClose(true);

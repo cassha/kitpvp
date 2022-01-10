@@ -1,12 +1,12 @@
 package dev.notcacha.kitpvp.core.command.spawn;
 
 import javax.inject.Inject;
-import dev.notcacha.kitpvp.api.message.MessageHandler;
 import dev.notcacha.kitpvp.core.gui.SpawnOptionsGUI;
 import dev.notcacha.kitpvp.core.spawn.SpawnManager;
 import me.fixeddev.commandflow.annotated.CommandClass;
 import me.fixeddev.commandflow.annotated.annotation.Command;
 import me.fixeddev.commandflow.bukkit.annotation.Sender;
+import me.yushust.message.MessageHandler;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 

@@ -2,7 +2,6 @@ package dev.notcacha.kitpvp.core.command.kit;
 
 import javax.inject.Inject;
 import dev.notcacha.kitpvp.api.kit.Kit;
-import dev.notcacha.kitpvp.api.message.MessageHandler;
 import dev.notcacha.kitpvp.api.repository.ModelRepository;
 import dev.notcacha.kitpvp.core.item.SerializableItemBuilder;
 import dev.notcacha.kitpvp.api.kit.DefaultKit;
@@ -10,6 +9,7 @@ import me.fixeddev.commandflow.annotated.CommandClass;
 import me.fixeddev.commandflow.annotated.annotation.Command;
 import me.fixeddev.commandflow.annotated.annotation.OptArg;
 import me.fixeddev.commandflow.bukkit.annotation.Sender;
+import me.yushust.message.MessageHandler;
 import org.bukkit.entity.Player;
 
 import java.util.*;
@@ -23,19 +23,14 @@ public class KitCreateCommand implements CommandClass {
     @Command(names = "")
     public boolean create(@Sender Player player, @OptArg String kitId) {
         if (kitId == null || kitId.trim().isEmpty()) {
-            player.sendMessage(
-                    messageHandler.getMessage(
-                            "kit.create.usage"
-                    )
-            );
-
+            messageHandler.send(player, "kit.create.usage");
             return false;
         }
 
         modelRepository.findOne(kitId).callback(callback -> {
 
             if (callback.getResponse().isPresent()) {
-                player.sendMessage(messageHandler.getMessage("kit.exists").replace("%kit_name%", kitId));
+                messageHandler.sendReplacing(player, "kit.exists", "%kit_id%", kitId);
                 return;
             }
 
@@ -51,7 +46,7 @@ public class KitCreateCommand implements CommandClass {
 
             modelRepository.save(kit, true);
 
-            player.sendMessage(messageHandler.getMessage("kit.create.success").replace("%kit_name%", kitId));
+            messageHandler.sendReplacing(player, "kit.create.success", "%kit_id%", kitId);
         });
 
 

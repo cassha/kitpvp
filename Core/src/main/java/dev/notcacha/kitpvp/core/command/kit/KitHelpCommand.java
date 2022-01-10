@@ -1,9 +1,9 @@
 package dev.notcacha.kitpvp.core.command.kit;
 
-import dev.notcacha.kitpvp.api.message.MessageHandler;
 import me.fixeddev.commandflow.annotated.CommandClass;
 import me.fixeddev.commandflow.annotated.annotation.Command;
 import me.fixeddev.commandflow.bukkit.annotation.Sender;
+import me.yushust.message.MessageHandler;
 import org.bukkit.entity.Player;
 
 import javax.inject.Inject;
@@ -17,7 +17,7 @@ public class KitHelpCommand implements CommandClass {
     @Command(names = "")
      public boolean help(@Sender Player player) {
 
-        messageHandler.getMessages("kit.usage").forEach(player::sendMessage);
+        messageHandler.send(player, "kit.usage");
 
         return true;
     }

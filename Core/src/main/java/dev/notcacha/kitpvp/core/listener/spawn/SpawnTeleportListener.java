@@ -15,7 +15,6 @@ public class SpawnTeleportListener implements Listener {
     @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGH)
     public void onUserJoin(UserJoinEvent event) {
         if (!spawnManager.isDefaultTeleport() || !spawnManager.isPresent()) {
-            System.out.println("pepe");
             return;
         }
 

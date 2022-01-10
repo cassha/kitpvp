@@ -1,11 +1,11 @@
 package dev.notcacha.kitpvp.core.gui.tag;
 
-import dev.notcacha.kitpvp.api.message.MessageHandler;
 import dev.notcacha.kitpvp.api.tag.Tag;
 import me.patothebest.guiframework.gui.anvil.AnvilSlot;
 import me.patothebest.guiframework.gui.inventory.GUIPage;
 import me.patothebest.guiframework.gui.inventory.button.AnvilButton;
 import me.patothebest.guiframework.itemstack.ItemStackBuilder;
+import me.yushust.message.MessageHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -89,6 +89,6 @@ public class TagEditorGUI extends GUIPage {
     }
 
     private void message(String type) {
-        player.sendMessage(messageHandler.getMessage("tag.edit.success").replace("%type%", type));
+        messageHandler.sendReplacing(player, "tag.edit.success", "%type%", type);
     }
 }

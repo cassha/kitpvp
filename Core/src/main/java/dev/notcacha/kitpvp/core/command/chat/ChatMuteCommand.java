@@ -1,11 +1,11 @@
 package dev.notcacha.kitpvp.core.command.chat;
 
 import dev.notcacha.kitpvp.api.chat.ChatManager;
-import dev.notcacha.kitpvp.api.message.MessageHandler;
 import dev.notcacha.kitpvp.core.util.PlaceholderAPIUtil;
 import me.fixeddev.commandflow.annotated.CommandClass;
 import me.fixeddev.commandflow.annotated.annotation.Command;
 import me.fixeddev.commandflow.bukkit.annotation.Sender;
+import me.yushust.message.MessageHandler;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
@@ -23,13 +23,27 @@ public class ChatMuteCommand implements CommandClass {
         if (chatManager.isMuted()) {
             chatManager.setMuted(false);
 
-            plugin.getServer().getOnlinePlayers().forEach(p -> p.sendMessage(PlaceholderAPIUtil.detectAndApply(player, messageHandler.getMessage("chat.muted.unmute").replace("%player_name%", player.getName()))));
+            plugin.getServer().getOnlinePlayers().forEach(onlinePlayer -> messageHandler.sendReplacingIn(
+                    onlinePlayer,
+                    "placeholder_api",
+                    "chat.muted.unmute",
+                    "%player_name%",
+                    player.getName()
+            ));
+
             return true;
         }
 
         chatManager.setMuted(true);
 
-        plugin.getServer().getOnlinePlayers().forEach(p -> p.sendMessage(PlaceholderAPIUtil.detectAndApply(player, messageHandler.getMessage("chat.muted.mute").replace("%player_name%", player.getName()))));
+        plugin.getServer().getOnlinePlayers().forEach(onlinePlayer -> messageHandler.sendReplacingIn(
+                onlinePlayer,
+                "placeholder_api",
+                "chat.muted.mute",
+                "%player_name%",
+                player.getName()
+        ));
+
         return true;
     }
 }

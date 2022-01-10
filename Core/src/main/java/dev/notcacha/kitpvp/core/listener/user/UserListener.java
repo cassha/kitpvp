@@ -4,7 +4,8 @@ import javax.inject.Inject;
 import dev.notcacha.kitpvp.api.event.UserDeathEvent;
 import dev.notcacha.kitpvp.api.event.UserJoinEvent;
 import dev.notcacha.kitpvp.api.event.UserLeaveEvent;
-import dev.notcacha.kitpvp.api.message.MessageHandler;
+import me.yushust.message.MessageHandler;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
@@ -16,41 +17,40 @@ public class UserListener implements Listener {
 
     @EventHandler
     public void onUserJoin(UserJoinEvent event) {
-        messageHandler.getMessages("join.player").forEach(message -> event.getPlayer().sendMessage(message));
+        Player player = event.getPlayer();
 
-        String onlineMessage = messageHandler.getMessage("join.online-players");
+        messageHandler.sendReplacingIn(
+                player,
+                "placeholder_api",
+                "join.player"
+        );
 
-        if (onlineMessage.equals("null")) return;
+        if (messageHandler.getMessage("join.online-players").equals("null")) return;
 
-        plugin.getServer().getOnlinePlayers().forEach(p -> p.sendMessage(
-                onlineMessage.replace("%player_name%", event.getPlayer().getName())
-        ));
+        plugin.getServer().getOnlinePlayers().forEach(onlinePlayer -> messageHandler.sendReplacingIn(onlinePlayer, "placeholder_api", "join.online-players", "%player_name%", event.getPlayer().getName()));
 
     }
 
     @EventHandler
     public void onUserLeave(UserLeaveEvent event) {
-        String quitMessage = messageHandler.getMessage("quit");
+        if (messageHandler.getMessage("quit").equals("null")) return;
 
-        if (quitMessage.equals("null")) return;
-
-        plugin.getServer().getOnlinePlayers().forEach(p -> p.sendMessage(
-                quitMessage.replace("%player_name%", event.getPlayer().getName())
-        ));
+        plugin.getServer().getOnlinePlayers().forEach(onlinePlayer -> messageHandler.sendReplacingIn(onlinePlayer, "placeholder_api", "quit", "%player_name%", event.getPlayer().getName()));
     }
 
     @EventHandler
     public void onUserDeath(UserDeathEvent event) {
-        String deathMessage = messageHandler.getMessage("death-message");
 
-        if (deathMessage.equals("null") || event.getKiller() == null) return;
+        if (event.getKiller() == null) return;
 
-        plugin.getServer().getOnlinePlayers().forEach(player -> {
-            player.sendMessage(
-                    deathMessage
-                            .replace("%player_name%", event.getUser().getUsername())
-                            .replace("%killer_name%", event.getKiller().getUsername())
-            );
-        });
+        plugin.getServer().getOnlinePlayers().forEach(player -> messageHandler.sendReplacingIn(
+                player,
+                "placeholder_api",
+                "death-message",
+                "%player_name%",
+                event.getUser().getUsername(),
+                "%killer_name%",
+                event.getKiller().getUsername()
+        ));
     }
 }

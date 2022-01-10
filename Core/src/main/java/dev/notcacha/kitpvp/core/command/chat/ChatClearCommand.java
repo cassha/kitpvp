@@ -1,10 +1,9 @@
 package dev.notcacha.kitpvp.core.command.chat;
 
-import dev.notcacha.kitpvp.api.message.MessageHandler;
-import dev.notcacha.kitpvp.core.util.PlaceholderAPIUtil;
 import me.fixeddev.commandflow.annotated.CommandClass;
 import me.fixeddev.commandflow.annotated.annotation.Command;
 import me.fixeddev.commandflow.bukkit.annotation.Sender;
+import me.yushust.message.MessageHandler;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
@@ -25,7 +24,14 @@ public class ChatClearCommand implements CommandClass {
                 onlinePlayer.sendMessage("");
             }
 
-            onlinePlayer.sendMessage(PlaceholderAPIUtil.detectAndApply(player, messageHandler.getMessage("chat.clear").replace("%player_name%", player.getName())));
+            messageHandler.sendReplacingIn(
+                    player,
+                    "placeholder_api",
+                    "chat.clear",
+                    "%player_name%",
+                    player.getName()
+            );
+
         });
         return true;
     }

@@ -1,6 +1,5 @@
 package dev.notcacha.kitpvp.core.command.tag;
 
-import dev.notcacha.kitpvp.api.message.MessageHandler;
 import dev.notcacha.kitpvp.api.repository.ModelRepository;
 import dev.notcacha.kitpvp.api.tag.DefaultTag;
 import dev.notcacha.kitpvp.api.tag.Tag;
@@ -8,6 +7,7 @@ import me.fixeddev.commandflow.annotated.CommandClass;
 import me.fixeddev.commandflow.annotated.annotation.Command;
 import me.fixeddev.commandflow.annotated.annotation.OptArg;
 import me.fixeddev.commandflow.bukkit.annotation.Sender;
+import me.yushust.message.MessageHandler;
 import org.bukkit.entity.Player;
 
 import javax.inject.Inject;
@@ -21,7 +21,9 @@ public class TagCreateCommand implements CommandClass {
     @Command(names = "")
     public boolean main(@Sender Player player, @OptArg String tagId) {
         if (tagId == null || tagId.trim().isEmpty()) {
-            player.sendMessage(messageHandler.getMessage("tag.create.usage"));
+
+            messageHandler.send(player, "tag.create.usage");
+
             return true;
         }
 
@@ -34,13 +36,13 @@ public class TagCreateCommand implements CommandClass {
                         tagId
                 ), true);
 
-                player.sendMessage(messageHandler.getMessage("tag.create.success").replace("%tag_id%", tagId));
+                messageHandler.sendReplacing(player, "tag.create.success", "%tag_id%", tagId);
 
                 return;
             }
 
 
-            player.sendMessage(messageHandler.getMessage("tag.create.error").replace("%tag_id%", tagId));
+            messageHandler.sendReplacing(player, "tag.create.error", "%tag_id%", tagId);
         });
 
         return true;

@@ -1,13 +1,12 @@
 package dev.notcacha.kitpvp.core.gui.tag;
 
-import dev.notcacha.kitpvp.api.message.MessageHandler;
 import dev.notcacha.kitpvp.api.repository.ModelRepository;
 import dev.notcacha.kitpvp.api.tag.Tag;
 import dev.notcacha.kitpvp.api.tag.applier.TagApplier;
 import me.patothebest.guiframework.gui.inventory.GUIPage;
 import me.patothebest.guiframework.gui.inventory.button.SimpleButton;
 import me.patothebest.guiframework.itemstack.ItemStackBuilder;
-import org.bukkit.ChatColor;
+import me.yushust.message.MessageHandler;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
@@ -56,10 +55,10 @@ public class TagGUI extends GUIPage {
                             if (player.hasPermission("kitpvp.tag." + tag.getId())) {
 
                                 tagApplier.apply(player, tag);
-                                player.sendMessage(messageHandler.getMessage("tag.apply.success").replace("%tag_id%", tag.getId()));
+                                messageHandler.sendReplacing(player, "tag.apply.success","%tag_id%", tag.getId());
                             } else {
 
-                                player.sendMessage(messageHandler.getMessage("tag.apply.error").replace("%tag_id%", tag.getId()));
+                                messageHandler.sendReplacing(player, "tag.apply.error","%tag_id%", tag.getId());
                             }
 
                             player.closeInventory();

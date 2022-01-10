@@ -1,10 +1,10 @@
 package dev.notcacha.kitpvp.core.gui;
 
-import dev.notcacha.kitpvp.api.message.MessageHandler;
 import dev.notcacha.kitpvp.core.spawn.SpawnManager;
 import me.patothebest.guiframework.gui.inventory.GUIPage;
 import me.patothebest.guiframework.gui.inventory.button.SimpleButton;
 import me.patothebest.guiframework.itemstack.ItemStackBuilder;
+import me.yushust.message.MessageHandler;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
@@ -37,18 +37,10 @@ public class SpawnOptionsGUI extends GUIPage {
 
                 case "enabled": {
                     if (spawnManager.isDefaultTeleport()) {
-                        player.sendMessage(
-                                messageHandler.getMessage(
-                                        "spawn.options.items.enabled.is-enabled"
-                                )
-                        );
+                        send(player, "enabled", "is-enabled");
                     } else {
                         spawnManager.setDefaultTeleport(true);
-                        player.sendMessage(
-                                messageHandler.getMessage(
-                                        "spawn.options.items.enabled.enabled"
-                                )
-                        );
+                        send(player, "enabled", "enabled");
                     }
 
                     player.closeInventory();
@@ -57,18 +49,11 @@ public class SpawnOptionsGUI extends GUIPage {
 
                 case "disabled": {
                     if (!spawnManager.isDefaultTeleport()) {
-                        player.sendMessage(
-                                messageHandler.getMessage(
-                                        "spawn.options.items.disabled.is-disabled"
-                                )
-                        );
+                        send(player, "disabled", "is-disabled");
                     } else {
                         spawnManager.setDefaultTeleport(false);
-                        player.sendMessage(
-                                messageHandler.getMessage(
-                                        "spawn.options.items.disabled.disabled"
-                                )
-                        );
+
+                        send(player, "disabled", "disabled");
                     }
 
                     player.closeInventory();
@@ -83,6 +68,10 @@ public class SpawnOptionsGUI extends GUIPage {
         return new ItemStackBuilder(type.equals("enabled") ? Material.EMERALD_BLOCK : Material.REDSTONE)
                 .name(messageHandler.getMessage("spawn.options.items." + type + ".name"))
                 .lore(messageHandler.getMessages("spawn.options.items." + type + ".lore"));
+    }
+
+    private void send(Player player, String path, String otherPath) {
+        messageHandler.send(player, "spawn.options.items" + path + "." + otherPath);
     }
 
 }

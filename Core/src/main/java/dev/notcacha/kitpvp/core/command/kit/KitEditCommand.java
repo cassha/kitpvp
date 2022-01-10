@@ -2,13 +2,13 @@ package dev.notcacha.kitpvp.core.command.kit;
 
 import javax.inject.Inject;
 import dev.notcacha.kitpvp.api.kit.Kit;
-import dev.notcacha.kitpvp.api.message.MessageHandler;
 import dev.notcacha.kitpvp.api.repository.ModelRepository;
 import dev.notcacha.kitpvp.core.gui.kit.KitEditorGUI;
 import me.fixeddev.commandflow.annotated.CommandClass;
 import me.fixeddev.commandflow.annotated.annotation.Command;
 import me.fixeddev.commandflow.annotated.annotation.OptArg;
 import me.fixeddev.commandflow.bukkit.annotation.Sender;
+import me.yushust.message.MessageHandler;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
@@ -24,7 +24,7 @@ public class KitEditCommand implements CommandClass {
     @Command(names = "")
     public boolean main(@Sender Player player, @OptArg String kitId) {
         if (kitId == null || kitId.trim().isEmpty()) {
-            player.sendMessage(messageHandler.getMessage("kit.editor.messages.usage"));
+            messageHandler.send(player, "kit.editor.messages.usage");
             return true;
         }
 
@@ -33,7 +33,7 @@ public class KitEditCommand implements CommandClass {
             Optional<Kit> callbackResponse = callback.getResponse();
 
             if (!callbackResponse.isPresent()) {
-                player.sendMessage(messageHandler.getMessage("kit.editor.messages.error").replace("%kit_id%", kitId));
+                messageHandler.sendReplacing(player, "kit.editor.messages.error", "%kit_id%", kitId);
                 return;
             }
 

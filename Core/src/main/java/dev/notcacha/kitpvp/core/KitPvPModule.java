@@ -1,11 +1,11 @@
 package dev.notcacha.kitpvp.core;
 
 import dev.notcacha.kitpvp.core.chat.module.ChatModule;
+import dev.notcacha.kitpvp.core.translation.module.TranslationModule;
 import me.yushust.inject.AbstractModule;
 import dev.notcacha.kitpvp.core.command.flow.FlowModule;
 import dev.notcacha.kitpvp.core.file.module.FileModule;
 import dev.notcacha.kitpvp.core.kit.module.KitModule;
-import dev.notcacha.kitpvp.core.message.module.MessageModule;
 import dev.notcacha.kitpvp.core.mongo.module.MongoModule;
 import dev.notcacha.kitpvp.core.service.module.ServiceModule;
 import dev.notcacha.kitpvp.core.spawn.module.SpawnModule;
@@ -40,6 +40,7 @@ public class KitPvPModule extends AbstractModule {
         install(new ChatModule());
         install(new SpawnModule());
         install(new ServiceModule());
-        install(new MessageModule());
+
+        install(new TranslationModule());
     }
 }

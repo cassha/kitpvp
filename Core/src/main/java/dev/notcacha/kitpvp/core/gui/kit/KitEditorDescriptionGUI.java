@@ -1,12 +1,12 @@
 package dev.notcacha.kitpvp.core.gui.kit;
 
 import dev.notcacha.kitpvp.api.kit.Kit;
-import dev.notcacha.kitpvp.api.message.MessageHandler;
 import me.patothebest.guiframework.gui.anvil.AnvilSlot;
 import me.patothebest.guiframework.gui.inventory.GUIPage;
 import me.patothebest.guiframework.gui.inventory.button.AnvilButton;
 import me.patothebest.guiframework.gui.inventory.button.SimpleButton;
 import me.patothebest.guiframework.itemstack.ItemStackBuilder;
+import me.yushust.message.MessageHandler;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
@@ -73,18 +73,8 @@ public class KitEditorDescriptionGUI extends GUIPage {
 
                     kit.getDescription().add(output);
 
-                    player.sendMessage(
-                            messageHandler.getMessage(
-                                    String.format(
-                                            PATH,
-                                            type,
-                                            "message"
-                                    )
-                            ).replace(
-                                    "%kit_id%",
-                                    kit.getId()
-                            )
-                    );
+                    messageHandler.sendReplacing(player, String.format(PATH, type, "message"), "%kit_id%", kit.getId());
+
                     break;
                 }
 
@@ -95,18 +85,7 @@ public class KitEditorDescriptionGUI extends GUIPage {
                     try {
                         line = Integer.parseInt(output);
                     } catch (NumberFormatException e) {
-                        player.sendMessage(
-                                messageHandler.getMessage(
-                                        String.format(
-                                                PATH,
-                                                type,
-                                                "invalid-number"
-                                        )
-                                ).replace(
-                                        "%kit_id%",
-                                        kit.getId()
-                                )
-                        );
+                        messageHandler.sendReplacing(player, String.format(PATH, type, "invalid-number"), "%kit_id%", kit.getId());
 
                         return;
                     }
@@ -114,39 +93,14 @@ public class KitEditorDescriptionGUI extends GUIPage {
                     if (kit.getDescription().get(line) == null) {
                         //The line not exists in list. xd
 
-                        player.sendMessage(
-                                messageHandler.getMessage(
-                                        String.format(
-                                                PATH,
-                                                type,
-                                                "error"
-                                        )
-                                ).replace(
-                                        "%kit_id%",
-                                        kit.getId()
-                                ).replace(
-                                        "%line%",
-                                        String.valueOf(line)
-                                )
-                        );
+                        messageHandler.sendReplacing(player, String.format(PATH, type, "error"), "%kit_id%", kit.getId(), "%line%", String.valueOf(line));
 
                         return;
                     }
 
                     kit.getDescription().remove(line);
 
-                    player.sendMessage(
-                            messageHandler.getMessage(
-                                    String.format(
-                                            PATH,
-                                            type,
-                                            "message"
-                                    )
-                            ).replace(
-                                    "%kit_id%",
-                                    kit.getId()
-                            )
-                    );
+                    messageHandler.sendReplacing(player, String.format(PATH, type, "message"), "%kit_id%", kit.getId());
                     break;
                 }
             }
@@ -164,18 +118,8 @@ public class KitEditorDescriptionGUI extends GUIPage {
 
             player.closeInventory();
 
-            player.sendMessage(
-                    messageHandler.getMessage(
-                            String.format(
-                                    PATH,
-                                    "clear",
-                                    "message"
-                            )
-                    ).replace(
-                            "%kit_id%",
-                            kit.getId()
-                    )
-            );
+            messageHandler.sendReplacing(player, String.format(PATH, "clear", "message"), "%kit_id%", kit.getId());
+
         });
     }
 

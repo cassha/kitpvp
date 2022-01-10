@@ -1,6 +1,5 @@
 package dev.notcacha.kitpvp.core.command.tag;
 
-import dev.notcacha.kitpvp.api.message.MessageHandler;
 import dev.notcacha.kitpvp.api.repository.ModelRepository;
 import dev.notcacha.kitpvp.api.tag.Tag;
 import dev.notcacha.kitpvp.core.gui.tag.TagEditorGUI;
@@ -8,6 +7,7 @@ import me.fixeddev.commandflow.annotated.CommandClass;
 import me.fixeddev.commandflow.annotated.annotation.Command;
 import me.fixeddev.commandflow.annotated.annotation.OptArg;
 import me.fixeddev.commandflow.bukkit.annotation.Sender;
+import me.yushust.message.MessageHandler;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
@@ -24,7 +24,7 @@ public class TagEditCommand implements CommandClass {
     @Command(names = "")
     public boolean main(@Sender Player player, @OptArg String tagId) {
         if (tagId == null || tagId.trim().isEmpty()) {
-            player.sendMessage(messageHandler.getMessage("tag.edit.usage"));
+            messageHandler.send(player, "tag.edit.usage");
             return true;
         }
 
@@ -33,7 +33,7 @@ public class TagEditCommand implements CommandClass {
 
             if (!callbackResponse.isPresent()) {
 
-                player.sendMessage(messageHandler.getMessage("tag.edit.error").replace("%tag_id%", tagId));
+                messageHandler.sendReplacing(player, "tag.edit.error", "%tag_id%", tagId);
 
                 return;
             }

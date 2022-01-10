@@ -1,12 +1,12 @@
 package dev.notcacha.kitpvp.core.command;
 
-import dev.notcacha.kitpvp.api.message.MessageHandler;
 import dev.notcacha.kitpvp.core.command.chat.ChatClearCommand;
 import dev.notcacha.kitpvp.core.command.chat.ChatMuteCommand;
 import me.fixeddev.commandflow.annotated.CommandClass;
 import me.fixeddev.commandflow.annotated.annotation.Command;
 import me.fixeddev.commandflow.annotated.annotation.SubCommandClasses;
 import me.fixeddev.commandflow.bukkit.annotation.Sender;
+import me.yushust.message.MessageHandler;
 import org.bukkit.entity.Player;
 
 import javax.inject.Inject;
@@ -23,7 +23,7 @@ public class ChatCommand implements CommandClass {
     @Command(names = "")
     public boolean main(@Sender Player player) {
 
-        messageHandler.getMessages("chat.usage").forEach(player::sendMessage);
+        messageHandler.send(player, "chat.usage");
 
         return true;
     }

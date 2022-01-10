@@ -2,13 +2,13 @@ package dev.notcacha.kitpvp.core.command.kit;
 
 import dev.notcacha.kitpvp.api.item.SerializableItem;
 import dev.notcacha.kitpvp.api.kit.Kit;
-import dev.notcacha.kitpvp.api.message.MessageHandler;
 import dev.notcacha.kitpvp.api.repository.ModelRepository;
 import dev.notcacha.kitpvp.core.util.PlayerInventoryUtil;
 import me.fixeddev.commandflow.annotated.CommandClass;
 import me.fixeddev.commandflow.annotated.annotation.Command;
 import me.fixeddev.commandflow.annotated.annotation.OptArg;
 import me.fixeddev.commandflow.bukkit.annotation.Sender;
+import me.yushust.message.MessageHandler;
 import org.bukkit.entity.Player;
 
 import javax.inject.Inject;
@@ -24,7 +24,7 @@ public class KitSetArmorCommand implements CommandClass {
     @Command(names = "")
     public boolean setArmor(@Sender Player player, @OptArg String kitId) {
         if (kitId == null || kitId.trim().isEmpty()) {
-            player.sendMessage(messageHandler.getMessage("kit.editor.set.armor.usage"));
+            messageHandler.send(player, "kit.editor.set.armor.usage");
             return true;
         }
 
@@ -32,14 +32,14 @@ public class KitSetArmorCommand implements CommandClass {
             Optional<Kit> callbackResponse = callback.getResponse();
 
             if (!callbackResponse.isPresent()) {
-                player.sendMessage(messageHandler.getMessage("kit.editor.set.armor.error").replace("%kit_id%", kitId));
+                messageHandler.sendReplacing(player, "kit.editor.set.armor.error", "%kit_id%", kitId);
                 return;
             }
 
             Map<Integer, SerializableItem> map = PlayerInventoryUtil.getArmor(player.getInventory());
 
             if (map.isEmpty()) {
-                player.sendMessage(messageHandler.getMessage("kit.editor.set.armor.empty-armor"));
+                messageHandler.send(player, "kit.editor.set.armor.empty-armor");
 
                 return;
             }
@@ -50,7 +50,7 @@ public class KitSetArmorCommand implements CommandClass {
 
             kitModelRepository.save(kit, true);
 
-            player.sendMessage(messageHandler.getMessage("kit.editor.set.armor.success").replace("%kit_id%", kitId));
+            messageHandler.sendReplacing(player, "kit.editor.set.armor.success", "%kit_id%", kitId);
         });
 
         return true;

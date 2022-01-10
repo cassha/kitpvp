@@ -2,12 +2,12 @@ package dev.notcacha.kitpvp.core.gui.kit;
 
 import dev.notcacha.kitpvp.api.kit.Kit;
 import dev.notcacha.kitpvp.api.kit.applier.KitApplier;
-import dev.notcacha.kitpvp.api.message.MessageHandler;
 import dev.notcacha.kitpvp.api.repository.ModelRepository;
 import dev.notcacha.kitpvp.api.util.Colorize;
 import me.patothebest.guiframework.gui.inventory.GUIPage;
 import me.patothebest.guiframework.gui.inventory.button.SimpleButton;
 import me.patothebest.guiframework.itemstack.ItemStackBuilder;
+import me.yushust.message.MessageHandler;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
@@ -50,10 +50,10 @@ public class KitGUI extends GUIPage {
                             if (player.hasPermission("kitpvp.kit." + kit.getId())) {
 
                                 kitApplier.apply(player, kit);
-                                player.sendMessage(messageHandler.getMessage("kit.apply.success").replace("%kit_id%", kit.getId()));
+                                messageHandler.sendReplacing(player, "kit.apply.success", "%kit_id%", kit.getId());
                             } else {
 
-                                player.sendMessage(messageHandler.getMessage("kit.apply.error").replace("%kit_id%", kit.getId()));
+                                messageHandler.sendReplacing(player, "kit.apply.error", "%kit_id%", kit.getId());
                             }
 
                             player.closeInventory();

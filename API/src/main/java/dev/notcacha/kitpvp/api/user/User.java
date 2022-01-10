@@ -21,4 +21,18 @@ public interface User extends Model {
 
     @JsonProperty("statistic")
     UserStatistic getStatistics();
+
+    /**
+     * @return The language of this user.
+     */
+
+    @JsonProperty("language")
+    String getLanguage();
+
+    /**
+     * Change the language of user.
+     * @param language language has been set.
+     */
+
+    void setLanguage(String language);
 }

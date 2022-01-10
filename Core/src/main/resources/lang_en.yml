@@ -32,13 +32,13 @@ kit:
   gui-title: "&7Kits"
   usage:
     - "&eThe correct usage is &c/kit <kitname/create/delete/edit>"
-  exists: "&eThe kit &9%kit_name% &ealready exists."
-  not-exists: "&eThe kit &9%kit_name% &enot exists."
+  exists: "&eThe kit &9%kit_id% &ealready exists."
+  not-exists: "&eThe kit &9%kit_id% &enot exists."
   create:
-    success: "&eThe kit &9%kit_name% &ehas been create."
+    success: "&eThe kit &9%kit_id% &ehas been create."
     usage: "&eThe correct usage is &c/kit create <kitname>"
   delete:
-    success: "&eThe kit &9%kit_name% &ehas been delete."
+    success: "&eThe kit &9%kit_id% &ehas been delete."
     usage: "&eThe correct usage is &c/kit delete <kitname>"
   apply:
     success: "&9The kit &f%kit_id% &9has been applied."
@@ -163,8 +163,8 @@ chat:
   usage:
     - "&cSub-Commands availables: &7<clear>"
   format: "%luckperms_prefix%%player_name% &f: &7%message%"
-  clear: "&9The chat has been clear by &f%player_name%&9."
+  clear: "&9The chat has been clear by %luckperms_prefix%%player_name%&9."
   muted:
     error-talk: "&cThe chat is already muted."
-    mute: "&cThe chat has been muted by &7%player_name%&c."
-    unmute: "&cThe chat has been un-muted by &7%player_name%&c."
+    mute: "&cThe chat has been muted by %luckperms_prefix%%player_name%&c."
+    unmute: "&cThe chat has been un-muted by %luckperms_prefix%%player_name%&c."
