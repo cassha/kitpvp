@@ -62,7 +62,6 @@ public class LanguageOptionsGUI extends GUIPage {
     }
 
     private ItemStackBuilder buildItem(String type) {
-        System.out.println("Language " + user.getLanguage());
         return new ItemStackBuilder(Material.PAPER)
                 .name(messageHandler.get(player, String.format(PATH, type, "name")))
                 .lore(messageHandler.replacingMany(player, String.format(PATH, type, "lore"), "%player_language%", user.getLanguage()));
