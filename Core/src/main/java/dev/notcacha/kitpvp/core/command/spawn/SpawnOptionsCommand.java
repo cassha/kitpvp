@@ -20,7 +20,7 @@ public class SpawnOptionsCommand implements CommandClass {
     @Command(names = "")
     public boolean options(@Sender Player player) {
 
-        new SpawnOptionsGUI(plugin, player, messageHandler.getMessage("spawn.options.title"), messageHandler, spawnManager);
+        new SpawnOptionsGUI(plugin, player, messageHandler.get(player, "spawn.options.title"), messageHandler, spawnManager);
         return true;
     }
 }

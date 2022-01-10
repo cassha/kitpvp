@@ -1,0 +1,193 @@
+no-permissions: "&cYou do not have sufficient permissions to run this command."
+join:
+  player:
+    - "&9Welcome to &lTest Network"
+  online-players: "&9%player_name% &eHa entrado al servidor."
+quit: "&9%player_name% &eHas exited the server"
+death-message: "&9%player_name% &cHa sido matado por &9%killer_name%"
+spawn:
+  success: "&aThe spawn has been established."
+  not-exists: "&cEl spawn no existe."
+  teleport: "&eHas sido telesportado al &9Spawn"
+  options:
+    title: "&7Opciones de Spawn"
+    items:
+      enabled:
+        name: "&aActivado"
+        lore:
+          - "&6"
+          - "&7Activar el teleporte por defecto al entrar un jugador."
+          - "&a"
+        is-enabled: "&aEl teleporte por defecto ya se encuentra activado."
+        enabled: "&aEl teleporte por defecto ha sido activado."
+      disabled:
+        name: "&cDesactivar"
+        lore:
+          - "&6"
+          - "&7Desactivar el teleporte por defecto al entrar un jugador."
+          - "&a"
+        is-disabled: "&aEl teleporte por defecto ya se encuentra desactivado."
+        disabled: "&aEl teleporte por defecto ha sido desactivado."
+kit:
+  gui-title: "&7Kits"
+  usage:
+    - "&eEl uso correct es &c/kit <kitname/create/delete/edit>"
+  exists: "&eEl kit &9%kit_id% &eya existe."
+  not-exists: "&eEl kit &9%kit_id% &eno existe."
+  create:
+    success: "&eEl kit &9%kit_id% &eha sido creado."
+    usage: "&eEl uso correcto es &c/kit create <kitname>"
+  delete:
+    success: "&eEl kit &9%kit_id% &eha sido eleminado."
+    usage: "&eEl uso correcto es &c/kit delete <kitname>"
+  apply:
+    success: "&9El kit &f%kit_id% &9ha sido aplicado."
+    error: "&cNo tienes suficientes permisos para aplicarte el kit &7%kit_id%&c."
+  editor:
+    set:
+      items:
+        usage: "&cEl uso correcto es &7/kit setitems <kit_name> "
+        error: "&cEl kit &7%kit_id% &cque quieres aplicarle los items no existe."
+        empty-items: "&cNo tienes items en el inventario"
+        success: "&9Los items has sido aplicado al kit &f%kit_id%&9."
+      armor:
+        usage: "&cEl correcto uso es &7/kit setarmor <kit_name> "
+        error: "&cEl kit &7%kit_id% &cque quieres aplicarle la armor no existe."
+        empty-armor: "&cNo tienes armadura equipada."
+        success: "&9La armadura ha sido aplicada al kit &f%kit_id%&9."
+    messages:
+      usage: "&cEl uso correcto es /kit edit <tag_id>"
+      error: "&cEl kit %kit_id% no existe."
+    title: "&7Editando el Kit%kit_id%."
+    items:
+      icon:
+        change: "&9El icono del kit &f%kit_id% &9ha sido cambiado."
+        name: "&9Edita el icon."
+        lore:
+          - "&4"
+          - "&7Edita el icon del kit."
+          - "&5"
+          - "&eDame Click"
+          - "&1"
+      display_name:
+        message: "&9El display name del kit &f%kit_id% &9ha sido cambiado por &f%display_name%&9."
+        name: "&9Edita el Display Name."
+        lore:
+          - "&4"
+          - "&7Edita el display name del kit."
+          - "&1"
+          - "&eDame Click"
+          - "&5"
+      description:
+        name: "&9Edita la descripción."
+        lore:
+          - "&4"
+          - "&7Edita la descripción del kit."
+          - "&1"
+          - "&eDame Click."
+          - "&5"
+        sub-inv:
+          clear:
+            message: "&9La descripción del kit &f%kit_id% &9ha sido limpiada."
+            name: "&9Limpiar la Descripción"
+            lore:
+              - "&2"
+              - "&7Limpia la descripción del kit."
+              - "&1"
+              - "&eDame Click"
+              - "&6"
+          add_line:
+            message: "&9Se a agregado la linea a la descripción del kit &f%kit_id% &9."
+            name: "&9Agregar Linea"
+            lore:
+              - "&2"
+              - "&7Agregar una linea a la descripción del kit."
+              - "&1"
+              - "&eDame Click."
+              - "&6"
+          quit_line:
+            message: "&9Se ha quitado la linea de la descripción del kit &f%kit_id% &9."
+            invalid-number: "&cPon un numero valido!"
+            error: "&cLa linea &7%line% &cno existe."
+            name: "&9Quitar linea"
+            lore:
+              - "&2"
+              - "&7Quita una linea de la descripción del kit."
+              - "&1"
+              - "&eDame Click."
+              - "&6"
+tag:
+  create:
+    usage: "&cEl uso correcto es &7/tag create <tag_id>"
+    success: "&cEL tag &7%tag_id%&c ha sido creado."
+    error: "&cEl tag &7%tag_id%&c ya existe."
+  delete:
+    usage: "&cEl uso correcto es &7/tag delete <tag_id>"
+    success: "&cEl tag &7%tag_id%&c Ha sido borrado."
+    error: "&cEl tag &7%tag_id%&c no existe."
+  apply:
+    success: "&eSe te ha aplicado el tag &7%tag_id% &e."
+    error: "&cNo tienes permisos para usar el tag &7%tag_id%&c."
+  edit:
+    error: "&cThe tag &7%tag_id%&c que estas queriendo editar no existe."
+    success: "&9El tipo &e%type% &9ha sido cambiado."
+    usage: "&cEl uso correcto es &7/tag edit <tag_id>"
+    title: "&7Editar tag &a%tag_id%"
+    items:
+      prefix:
+        name: "&7Cambiar Prefix"
+        lore:
+          - "&1"
+          - "&7Cambia el prefix del tag."
+          - "&2"
+      suffix:
+        name: "&7Cambiar Suffix"
+        lore:
+          - "&1"
+          - "&7Cambia el suffix del tag."
+          - "&2"
+      list_name:
+        name: "&7Cambiar List Name"
+        lore:
+          - "&1"
+          - "&7Cambia el list name del tag."
+          - "&2"
+  gui:
+    title: "&7Lista De Tags"
+    descrption:
+      - "&1"
+      - "&7Prefix: %prefix%"
+      - "&7Suffix: %suffix%"
+      - "&2"
+chat:
+  usage:
+    - "&cSub-Comandos Disponibles: &7<clear>"
+  format: "%luckperms_prefix%%player_name% &f: &7%message%"
+  clear: "&9El chat ha sido limpiado por %luckperms_prefix%%player_name%&9."
+  muted:
+    error-talk: "&cEl chat se encuentra muteado."
+    mute: "&cEl chat ha sido desactivado por %luckperms_prefix%%player_name%&c."
+    unmute: "&cEl chat ha sido activado por %luckperms_prefix%%player_name%&c."
+language:
+  gui:
+    title: "&7Opciones de Language"
+    message: "&9Tu language a sido cambiado a &f%language%&9."
+    items:
+      current-language:
+        name: "&9Tu Language"
+        lore:
+          - "&9"
+          - "&7Tu actual language es&f: &9%player_language%"
+          - "&5"
+      language-en:
+        name: "&9Ingles Language"
+        lore:
+          - "&7"
+          - "&7Cambia tu language a &9EN&7."
+          - "&1"
+      language-es:
+        name: "&9Español Language"
+        lore:
+          - "&7"
+          - "&7Cambia tu language a &9EN&7."
+          - "&1"

@@ -38,7 +38,7 @@ public class TagEditCommand implements CommandClass {
                 return;
             }
 
-            new TagEditorGUI(plugin, player, messageHandler.getMessage("tag.edit.title").replace("%tag_id%", tagId), messageHandler, callbackResponse.get());
+            new TagEditorGUI(plugin, player, messageHandler.get(player, "tag.edit.title").replace("%tag_id%", tagId), messageHandler, callbackResponse.get());
         });
         return true;
     }

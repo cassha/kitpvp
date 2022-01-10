@@ -33,7 +33,7 @@ public class TagCommand implements CommandClass {
     @Command(names = "")
     public boolean main(@Sender Player player) {
 
-        new TagGUI(plugin, player,messageHandler.getMessage("tag.gui.title"), tagApplier, messageHandler, modelRepository);
+        new TagGUI(plugin, player,messageHandler.get(player, "tag.gui.title"), tagApplier, messageHandler, modelRepository);
 
         return true;
     }

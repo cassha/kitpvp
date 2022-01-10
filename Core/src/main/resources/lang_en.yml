@@ -168,3 +168,26 @@ chat:
     error-talk: "&cThe chat is already muted."
     mute: "&cThe chat has been muted by %luckperms_prefix%%player_name%&c."
     unmute: "&cThe chat has been un-muted by %luckperms_prefix%%player_name%&c."
+language:
+  gui:
+    title: "&7Language Options"
+    message: "&9Your language has been changed to &f%language%&9."
+    items:
+      current-language:
+        name: "&9Your Current Language"
+        lore:
+          - "&9"
+          - "&7Your current language is&f: &9%player_language%"
+          - "&5"
+      language-en:
+        name: "&9EN Language"
+        lore:
+          - "&7"
+          - "&7Change your language to &9EN&7."
+          - "&1"
+      language-es:
+        name: "&9ES Language"
+        lore:
+          - "&7"
+          - "&7Change your language to &9ES&7."
+          - "&1"

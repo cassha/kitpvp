@@ -66,8 +66,8 @@ public class SpawnOptionsGUI extends GUIPage {
 
     private ItemStackBuilder buildItem(String type) {
         return new ItemStackBuilder(type.equals("enabled") ? Material.EMERALD_BLOCK : Material.REDSTONE)
-                .name(messageHandler.getMessage("spawn.options.items." + type + ".name"))
-                .lore(messageHandler.getMessages("spawn.options.items." + type + ".lore"));
+                .name(messageHandler.get(player, "spawn.options.items." + type + ".name"))
+                .lore(messageHandler.get(player, "spawn.options.items." + type + ".lore"));
     }
 
     private void send(Player player, String path, String otherPath) {

@@ -34,7 +34,7 @@ public class KitCommand implements CommandClass {
     @Command(names = "")
     public boolean main(@Sender Player player) {
 
-        new KitGUI(plugin, player, messageHandler.getMessage("kit.gui-title"), kitModelRepository, kitApplier, messageHandler);
+        new KitGUI(plugin, player, messageHandler.get(player, "kit.gui-title"), kitModelRepository, kitApplier, messageHandler);
 
         return true;
     }

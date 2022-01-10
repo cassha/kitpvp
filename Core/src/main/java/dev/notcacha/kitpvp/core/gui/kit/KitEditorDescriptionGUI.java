@@ -125,7 +125,7 @@ public class KitEditorDescriptionGUI extends GUIPage {
 
     private ItemStackBuilder buildItem(String type) {
         return new ItemStackBuilder(Material.PAPER)
-                .name(messageHandler.getMessage(String.format(PATH, type, "name")))
-                .lore(messageHandler.getMessages(String.format(PATH, type, "lore")));
+                .name(messageHandler.get(player, String.format(PATH, type, "name")))
+                .lore(messageHandler.get(player, String.format(PATH, type, "lore")));
     }
 }

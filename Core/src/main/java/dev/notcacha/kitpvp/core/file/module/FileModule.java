@@ -14,10 +14,6 @@ public class FileModule extends AbstractModule {
 
     @Override
     protected void configure() {
-
-        bind(YamlFile.class).named("message").toProvider(() -> new YamlFile(plugin, "messages")
-        ).singleton();
-
         bind(YamlFile.class).named("spawn").toProvider(() -> new YamlFile(plugin, "spawn")
         ).singleton();
     }

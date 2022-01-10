@@ -37,8 +37,8 @@ public class KitEditorGUI extends GUIPage {
 
     private ItemStackBuilder buildItem(Material material, String type) {
         return new ItemStackBuilder(material)
-                .name(messageHandler.getMessage(String.format(PATH, type, "name")))
-                .lore(messageHandler.getMessages(String.format(PATH, type, "lore")));
+                .name(messageHandler.get(player, String.format(PATH, type, "name")))
+                .lore(messageHandler.get(player, String.format(PATH, type, "lore")));
     }
 
     private SimpleButton buildButton(String type, ItemStackBuilder item) {
@@ -53,7 +53,7 @@ public class KitEditorGUI extends GUIPage {
                     new KitEditorIconGUI(
                             getPlugin(),
                             getPlayer(),
-                            messageHandler.getMessage(String.format(PATH, "icon", "name")).replace("%kit_id%", kit.getId()),
+                            messageHandler.get(player, String.format(PATH, "icon", "name")).replace("%kit_id%", kit.getId()),
                             messageHandler,
                             kit
                     );
@@ -66,7 +66,8 @@ public class KitEditorGUI extends GUIPage {
                     new KitEditorDescriptionGUI(
                             getPlugin(),
                             getPlayer(),
-                            messageHandler.getMessage(
+                            messageHandler.get(
+                                    player,
                                     String.format(PATH, "description", "name")
                             ).replace("%kit_id%", kit.getId()),
                             messageHandler,

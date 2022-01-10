@@ -15,8 +15,6 @@ import org.bukkit.plugin.Plugin;
 
 public class KitEditorIconGUI extends GUIPage {
 
-    private static final ItemStackBuilder ITEM_STACK = new ItemStackBuilder(new ItemStack(Material.STAINED_GLASS, 1, (short) 15)).name("&1");
-
     private final MessageHandler messageHandler;
     private final Kit kit;
 
@@ -37,7 +35,7 @@ public class KitEditorIconGUI extends GUIPage {
             if (!(i == 4)) {
                 addButton(
                         new SimpleButton(
-                                ITEM_STACK
+                                new ItemStackBuilder(new ItemStack(Material.STAINED_GLASS, 1, (short) 15)).name("&1")
                         ),
                         i
                 );

@@ -46,7 +46,7 @@ public class TagGUI extends GUIPage {
                     tagSet.forEach(tag -> {
                         item.name(tag.getListName());
 
-                        List<String> lore = messageHandler.getMessages("tag.gui.description");
+                        List<String> lore = messageHandler.getMany(player, "tag.gui.description");
                         lore.replaceAll(text -> text.replace("%prefix%", tag.getPrefix()).replace("%suffix%", tag.getSuffix()));
 
                         item.lore(lore);

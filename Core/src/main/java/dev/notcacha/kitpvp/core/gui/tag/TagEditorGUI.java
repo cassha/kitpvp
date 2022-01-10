@@ -38,8 +38,8 @@ public class TagEditorGUI extends GUIPage {
 
     private ItemStackBuilder buildItem(String type) {
         return new ItemStackBuilder(Material.PAPER)
-                .name(messageHandler.getMessage("tag.edit.items." + type + ".name"))
-                .lore(messageHandler.getMessages("tag.edit.items." + type + ".lore"));
+                .name(messageHandler.get(player, "tag.edit.items." + type + ".name"))
+                .lore(messageHandler.get(player, "tag.edit.items." + type + ".lore"));
     }
 
     private AnvilButton buildAnvilButton(String type, ItemStackBuilder item) {

@@ -37,7 +37,7 @@ public class KitEditCommand implements CommandClass {
                 return;
             }
 
-            new KitEditorGUI(plugin, player, messageHandler.getMessage("kit.editor.title").replace("%kit_id%", kitId), messageHandler, callbackResponse.get());
+            new KitEditorGUI(plugin, player, messageHandler.get(player, "kit.editor.title").replace("%kit_id%", kitId), messageHandler, callbackResponse.get());
 
         });
 
