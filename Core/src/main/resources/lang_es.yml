@@ -1,12 +1,12 @@
-no-permissions: "&cYou do not have sufficient permissions to run this command."
+no-permissions: "&cNo tienes suficientes permisos para ejecutar ese comando."
 join:
   player:
-    - "&9Welcome to &lTest Network"
+    - "&9Bienvenido a &lTest Network"
   online-players: "&9%player_name% &eHa entrado al servidor."
 quit: "&9%player_name% &eHas exited the server"
 death-message: "&9%player_name% &cHa sido matado por &9%killer_name%"
 spawn:
-  success: "&aThe spawn has been established."
+  success: "&aEl spawn ha sido establecido correctamente."
   not-exists: "&cEl spawn no existe."
   teleport: "&eHas sido telesportado al &9Spawn"
   options:
@@ -191,3 +191,22 @@ language:
           - "&7"
           - "&7Cambia tu language a &9EN&7."
           - "&1"
+scoreboard:
+  title: "&9&lKitPvP"
+  lines:
+    - "&7&m--------------------"
+    - " &9&lInformacion"
+    - "   &7%%arrow%% &fNombre&7: &9%player_name%"
+    - "   &7%%arrow%% &fConectados&7: &9%server_online_players%"
+    - "&2"
+    - " &9&lEstadisticas"
+    - "   &7%%arrow%% &fAsesinatos&7: &9%player_kills%"
+    - "   &7%%arrow%% &fMuertes&7: &9%player_deaths%"
+    - "&1"
+    - "&7www.servername.com"
+    - "&7&m-------&7&m-------------"
+statistic:
+  - "&7&m-------------------------------"
+  - "&7%%arrow%% &fAsesinatos&7: &9%player_kills%"
+  - "&7%%arrow%% &fMuertes&7: &9%player_deaths%"
+  - "&7&m-------------&7&m------------------"

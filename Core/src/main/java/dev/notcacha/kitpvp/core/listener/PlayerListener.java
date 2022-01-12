@@ -39,6 +39,7 @@ public class PlayerListener implements Listener {
                     new UserJoinEvent(response.get(), event.getPlayer())
             );
         });
+
     }
 
     @EventHandler

@@ -1,9 +1,10 @@
 # The database name is kitpvp
-
-mongo:
 # In case you don't want to make the connection via URI, delete this path.
+mongo:
   uri: null
   username: username
   password: password
   host: localhost
   port: 27017
+# In case you don't want to use the plugin scoreboard, set the value to false
+scoreboard: true

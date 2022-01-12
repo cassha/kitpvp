@@ -29,6 +29,7 @@ public class CommandService implements Service {
     @Inject private TagCommand tagCommand;
     @Inject private ChatCommand chatCommand;
     @Inject private LanguageCommand languageCommand;
+    @Inject private StatisticCommand statisticCommand;
 
     @Override
     public void start() {
@@ -40,7 +41,8 @@ public class CommandService implements Service {
                 kitCommand,
                 tagCommand,
                 chatCommand,
-                languageCommand
+                languageCommand,
+                statisticCommand
         );
     }
 

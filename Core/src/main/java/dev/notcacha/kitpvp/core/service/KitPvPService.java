@@ -14,6 +14,7 @@ public class KitPvPService implements Service {
     @Inject @Named("spawn") private Service spawnsService;
     @Inject @Named("save") private  Service saveService;
     @Inject @Named("hook-register") private Service hookRegisterService;
+    @Inject @Named("scoreboard") private Service scoreboardService;
 
     @Override
     public void start() {
@@ -22,6 +23,7 @@ public class KitPvPService implements Service {
         spawnsService.start();
         commandService.start();
         eventService.start();
+        scoreboardService.start();
         hookRegisterService.start();
     }
 

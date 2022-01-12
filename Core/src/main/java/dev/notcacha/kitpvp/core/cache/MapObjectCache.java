@@ -49,7 +49,7 @@ public class MapObjectCache<T extends Model> implements ObjectCache<T> {
             return;
         }
 
-        removeObject(objectId);
+        map.remove(objectId);
     }
 
     @Override

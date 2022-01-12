@@ -13,6 +13,7 @@ public class ServiceModule extends AbstractModule {
         bind(Service.class).named("command").to(CommandService.class).singleton();
         bind(Service.class).named("event").to(EventService.class).singleton();
         bind(Service.class).named("save").to(SaveOnStopService.class).singleton();
+        bind(Service.class).named("scoreboard").to(ScoreboardService.class).singleton();
         bind(Service.class).named("hook-register").to(HookRegisterService.class).singleton();
 
         bind(Service.class).to(KitPvPService.class).singleton();
