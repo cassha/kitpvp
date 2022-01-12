@@ -1,6 +1,5 @@
 package dev.notcacha.kitpvp.core.user.module;
 
-import dev.notcacha.kitpvp.core.model.MongoModelFindProcessor;
 import dev.notcacha.kitpvp.core.model.custom.MongoModelUserFindProcessor;
 import me.yushust.inject.AbstractModule;
 import dev.notcacha.kitpvp.api.ModelBinderData;

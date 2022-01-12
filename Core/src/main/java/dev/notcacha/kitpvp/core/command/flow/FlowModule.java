@@ -1,5 +1,7 @@
 package dev.notcacha.kitpvp.core.command.flow;
 
+import dev.notcacha.kitpvp.core.command.flow.authorizer.KitPvPAuthorizer;
+import dev.notcacha.kitpvp.core.command.flow.translation.KitPvPMapTranslationProvider;
 import me.yushust.inject.AbstractModule;
 import me.fixeddev.commandflow.CommandContext;
 import me.fixeddev.commandflow.CommandManager;
@@ -31,6 +33,7 @@ public class FlowModule extends AbstractModule {
             }
         });
 
+        commandManager.setAuthorizer(new KitPvPAuthorizer());
         commandManager.setTranslator(new DefaultTranslator(survivalTranslationProvider));
 
         return commandManager;

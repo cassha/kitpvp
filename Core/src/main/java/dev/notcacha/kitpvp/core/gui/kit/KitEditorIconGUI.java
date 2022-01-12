@@ -35,7 +35,7 @@ public class KitEditorIconGUI extends GUIPage {
             if (!(i == 4)) {
                 addButton(
                         new SimpleButton(
-                                new ItemStackBuilder(new ItemStack(Material.STAINED_GLASS, 1, (short) 15)).name("&1")
+                                new ItemStackBuilder(new ItemStack(Material.BLACK_STAINED_GLASS_PANE, 1)).name("&1")
                         ),
                         i
                 );

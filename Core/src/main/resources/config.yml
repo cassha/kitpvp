@@ -8,3 +8,5 @@ mongo:
   port: 27017
 # In case you don't want to use the plugin scoreboard, set the value to false
 scoreboard: true
+# The command has been used in buy kit
+kit-buy-command: "lp user %player_name% permission set %permission% true"

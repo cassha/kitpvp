@@ -43,6 +43,11 @@ kit:
   apply:
     success: "&9El kit &f%kit_id% &9ha sido aplicado."
     error: "&cNo tienes suficientes permisos para aplicarte el kit &7%kit_id%&c."
+  shop:
+    title: "&7Tienda de Kits"
+    insufficient-balance: "&cNo tienes la suficiente plata para comprar este kit &7%kit_id%&c."
+    already-all-kits: "&9Ya tienes todos los kits."
+    message: "&9Has comprado el kit &f%kit_id% &9."
   editor:
     set:
       items:
@@ -154,7 +159,7 @@ tag:
           - "&2"
   gui:
     title: "&7Lista De Tags"
-    descrption:
+    description:
       - "&1"
       - "&7Prefix: %prefix%"
       - "&7Suffix: %suffix%"

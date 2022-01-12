@@ -16,17 +16,19 @@ public class DefaultKit implements Kit {
     private SerializableItem icon;
     private Map<Integer, SerializableItem> inventoryContents;
     private Map<Integer, SerializableItem> armorContents;
+    private int cost;
 
     @ConstructorProperties({
-            "_id", "display_name", "description", "icon", "inventory_contents", "armor_contents"
+            "_id", "display_name", "description", "icon", "inventory_contents", "armor_contents", "cost"
     })
-    public DefaultKit(String id, String displayName, List<String> description, SerializableItem icon, Map<Integer, SerializableItem> inventoryContents, Map<Integer, SerializableItem> armorContents) {
+    public DefaultKit(String id, String displayName, List<String> description, SerializableItem icon, Map<Integer, SerializableItem> inventoryContents, Map<Integer, SerializableItem> armorContents, int cost) {
         this.id = id;
         this.displayName = displayName;
         this.description = description;
         this.icon = icon;
         this.inventoryContents = inventoryContents;
         this.armorContents = armorContents;
+        this.cost = cost;
     }
 
 
@@ -78,6 +80,16 @@ public class DefaultKit implements Kit {
     @Override
     public void setArmorContents(Map<Integer, SerializableItem> armorContents) {
         this.armorContents = armorContents;
+    }
+
+    @Override
+    public int getCost() {
+        return cost;
+    }
+
+    @Override
+    public void setCost(int cost) {
+        this.cost = cost;
     }
 
     @Override

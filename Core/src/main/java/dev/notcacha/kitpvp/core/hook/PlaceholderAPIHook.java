@@ -4,16 +4,15 @@ import dev.notcacha.kitpvp.api.cache.ObjectCache;
 import dev.notcacha.kitpvp.api.user.User;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 
+import javax.inject.Inject;
 import java.util.Optional;
 
 public class PlaceholderAPIHook extends PlaceholderExpansion {
 
-    private final ObjectCache<User> userObjectCache;
-
-    public PlaceholderAPIHook(ObjectCache<User> userObjectCache) {
-        this.userObjectCache = userObjectCache;
-    }
+    @Inject private ObjectCache<User> userObjectCache;
+    @Inject private Plugin plugin;
 
     @Override
     public String getIdentifier() {
@@ -52,5 +51,18 @@ public class PlaceholderAPIHook extends PlaceholderExpansion {
         }
 
         return null;
+    }
+
+    public boolean register() {
+        if (!plugin.getServer().getPluginManager().getPlugin("PlaceholderAPI").isEnabled()) {
+
+            plugin.getServer().getLogger().warning("[KitPvP] The PlaceholderAPI is not found in server from create hook.");
+
+            return false;
+        }
+
+        plugin.getServer().getLogger().info("[KitPvP] The plugin hook with PlaceholderAPI has been created correctly.");
+
+        return super.register();
     }
 }

@@ -1,6 +1,7 @@
 package dev.notcacha.kitpvp.core.command.chat;
 
 import dev.notcacha.kitpvp.api.chat.ChatManager;
+import dev.notcacha.kitpvp.core.translation.messenger.DefaultMessenger;
 import dev.notcacha.kitpvp.core.util.PlaceholderAPIUtil;
 import me.fixeddev.commandflow.annotated.CommandClass;
 import me.fixeddev.commandflow.annotated.annotation.Command;
@@ -25,7 +26,7 @@ public class ChatMuteCommand implements CommandClass {
 
             plugin.getServer().getOnlinePlayers().forEach(onlinePlayer -> messageHandler.sendReplacingIn(
                     onlinePlayer,
-                    "placeholder_api",
+                    DefaultMessenger.PLACEHOLDER_MODE,
                     "chat.muted.unmute",
                     "%player_name%",
                     player.getName()
@@ -38,7 +39,7 @@ public class ChatMuteCommand implements CommandClass {
 
         plugin.getServer().getOnlinePlayers().forEach(onlinePlayer -> messageHandler.sendReplacingIn(
                 onlinePlayer,
-                "placeholder_api",
+                DefaultMessenger.PLACEHOLDER_MODE,
                 "chat.muted.mute",
                 "%player_name%",
                 player.getName()

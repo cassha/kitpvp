@@ -4,6 +4,7 @@ import javax.inject.Inject;
 import dev.notcacha.kitpvp.api.event.UserDeathEvent;
 import dev.notcacha.kitpvp.api.event.UserJoinEvent;
 import dev.notcacha.kitpvp.api.event.UserLeaveEvent;
+import dev.notcacha.kitpvp.core.translation.messenger.DefaultMessenger;
 import me.yushust.message.MessageHandler;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -21,13 +22,13 @@ public class UserListener implements Listener {
 
         messageHandler.sendReplacingIn(
                 player,
-                "placeholder_api",
+                DefaultMessenger.PLACEHOLDER_MODE,
                 "join.player"
         );
 
         if (messageHandler.getMessage("join.online-players").equals("null")) return;
 
-        plugin.getServer().getOnlinePlayers().forEach(onlinePlayer -> messageHandler.sendReplacingIn(onlinePlayer, "placeholder_api", "join.online-players", "%player_name%", event.getPlayer().getName()));
+        plugin.getServer().getOnlinePlayers().forEach(onlinePlayer -> messageHandler.sendReplacingIn(onlinePlayer, DefaultMessenger.PLACEHOLDER_MODE, "join.online-players", "%player_name%", event.getPlayer().getName()));
 
     }
 
@@ -35,7 +36,7 @@ public class UserListener implements Listener {
     public void onUserLeave(UserLeaveEvent event) {
         if (messageHandler.getMessage("quit").equals("null")) return;
 
-        plugin.getServer().getOnlinePlayers().forEach(onlinePlayer -> messageHandler.sendReplacingIn(onlinePlayer, "placeholder_api", "quit", "%player_name%", event.getPlayer().getName()));
+        plugin.getServer().getOnlinePlayers().forEach(onlinePlayer -> messageHandler.sendReplacingIn(onlinePlayer, DefaultMessenger.PLACEHOLDER_MODE, "quit", "%player_name%", event.getPlayer().getName()));
     }
 
     @EventHandler
@@ -45,7 +46,7 @@ public class UserListener implements Listener {
 
         plugin.getServer().getOnlinePlayers().forEach(player -> messageHandler.sendReplacingIn(
                 player,
-                "placeholder_api",
+                DefaultMessenger.PLACEHOLDER_MODE,
                 "death-message",
                 "%player_name%",
                 event.getUser().getUsername(),

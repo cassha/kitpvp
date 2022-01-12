@@ -1,3 +1,4 @@
 name: KitPvP
 main: dev.notcacha.kitpvp.core.KitPvP
 version: 0.0.1
+softdepend: [PlaceholderAPI, Vault]

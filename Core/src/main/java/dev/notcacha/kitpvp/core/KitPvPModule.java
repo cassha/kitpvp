@@ -1,6 +1,7 @@
 package dev.notcacha.kitpvp.core;
 
 import dev.notcacha.kitpvp.core.chat.module.ChatModule;
+import dev.notcacha.kitpvp.core.hook.module.HookModule;
 import dev.notcacha.kitpvp.core.scoreboard.module.ScoreboardModule;
 import dev.notcacha.kitpvp.core.translation.module.TranslationModule;
 import me.yushust.inject.AbstractModule;
@@ -44,5 +45,7 @@ public class KitPvPModule extends AbstractModule {
 
         install(new TranslationModule());
         install(new ScoreboardModule());
+
+        install(new HookModule());
     }
 }

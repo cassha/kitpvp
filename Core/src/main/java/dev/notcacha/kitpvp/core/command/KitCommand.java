@@ -22,7 +22,8 @@ import org.bukkit.plugin.Plugin;
         KitEditCommand.class,
         KitHelpCommand.class,
         KitSetArmorCommand.class,
-        KitSetItemsCommand.class
+        KitSetItemsCommand.class,
+        KitShopCommand.class
 })
 public class KitCommand implements CommandClass {
 

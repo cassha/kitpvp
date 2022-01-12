@@ -43,6 +43,11 @@ kit:
   apply:
     success: "&9The kit &f%kit_id% &9has been applied."
     error: "&cYou no have permissions to apply kit &7%kit_id%&c."
+  shop:
+    title: "&7Kit Shop"
+    insufficient-balance: "&cYou no have sufficient money from buy kit &7%kit_id%&c."
+    already-all-kits: "&9You have all kits."
+    message: "&9You have buy &f%kit_id% &9kit."
   editor:
     set:
       items:
@@ -154,7 +159,7 @@ tag:
           - "&2"
   gui:
     title: "&7Tags List"
-    descrption:
+    description:
       - "&1"
       - "&7Prefix: %prefix%"
       - "&7Suffix: %suffix%"

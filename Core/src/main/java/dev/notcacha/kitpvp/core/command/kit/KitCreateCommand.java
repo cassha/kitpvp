@@ -42,7 +42,9 @@ public class KitCreateCommand implements CommandClass {
                             Collections.singletonList("&7Example list of kit &f: &9" + kitId)
                     )
                     .build()
-                    , new HashMap<>(), new HashMap<>());
+                    , new HashMap<>(), new HashMap<>(),
+                    0
+            );
 
             modelRepository.save(kit, true);
 

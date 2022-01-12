@@ -83,4 +83,18 @@ public interface Kit extends Model {
 
     void setArmorContents(Map<Integer, SerializableItem> armorContents);
 
+    /**
+     * @return The cost of buy the kit.
+     */
+
+    @JsonProperty("cost")
+    int getCost();
+
+    /**
+     * Change the cost.
+     * @param cost new cost has been applied.
+     */
+
+    void setCost(int cost);
+
 }
